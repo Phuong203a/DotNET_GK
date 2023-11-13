@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{23F63F6E-D070-4B0F-99F8-7E98DD1B5129}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>DoDienTu</RootNamespace>
-    <AssemblyName>DoDienTu</AssemblyName>
+    <RootNamespace>CHO_THUE_XE</RootNamespace>
+    <AssemblyName>CHO_THUE_XE</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -53,7 +53,7 @@
     <ManifestCertificateThumbprint>45524C22506C65D19BD879E613D1D8DB408EE8EA</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>DoDienTu_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>CHO_THUE_XE_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <GenerateManifests>true</GenerateManifests>
@@ -204,7 +204,7 @@
     <EmbeddedResource Include="StyleCar.resx">
       <DependentUpon>StyleCar.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="DoDienTu_TemporaryKey.pfx" />
+    <None Include="CHO_THUE_XE_TemporaryKey.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

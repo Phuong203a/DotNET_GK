@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33627.172
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CHO_THUE_XE", "DoDienTu\CHO_THUE_XE.csproj", "{23F63F6E-D070-4B0F-99F8-7E98DD1B5129}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CHO_THUE_XE", "CHO_THUE_XE\CHO_THUE_XE.csproj", "{23F63F6E-D070-4B0F-99F8-7E98DD1B5129}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CuaHangMuaBanThietBiDienTu", "..\..\..\Desktop\CuaHangMuaBanThietBiDienTu\CuaHangMuaBanThietBiDienTu.csproj", "{A8AAE66F-ADD1-4A12-9C9D-844C0702E4A4}"
 EndProject
