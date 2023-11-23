@@ -1,4 +1,4 @@
-﻿namespace DoDienTu
+﻿namespace CHO_THUE_XE
 {
     partial class FormPurchase
     {
@@ -140,6 +140,7 @@
             this.txtTotal.Name = "txtTotal";
             this.txtTotal.Size = new System.Drawing.Size(249, 36);
             this.txtTotal.TabIndex = 28;
+            this.txtTotal.TextChanged += new System.EventHandler(this.txtTotal_TextChanged);
             // 
             // label1
             // 

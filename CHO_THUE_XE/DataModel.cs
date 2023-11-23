@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 
-namespace DoDienTu
+namespace CHO_THUE_XE
 {
     class DataModel
     {
@@ -15,7 +15,7 @@ namespace DoDienTu
         public DataModel()
         {
             builder = new System.Data.SqlClient.SqlConnectionStringBuilder();
-            builder["Data Source"] = "PHUONGDAM\\SQLEXPRESS";
+            builder["Data Source"] = ".\\SQLEXPRESS";
             builder["integrated Security"] = true;
             builder["Initial Catalog"] = "QLCHTX";
             string userName = System.Security.Principal.WindowsIdentity.GetCurrent().Name;
@@ -444,7 +444,7 @@ namespace DoDienTu
         {
             List<Dictionary<string, string>> rows = new List<Dictionary<string, string>>();
             Dictionary<string, string> column;
-            string sqlQuery = "SELECT MaKH, TenKH, Loai, SoDT, DiaChi FROM KhachHang";
+            string sqlQuery = "SELECT MaKH,CCCD, TenKH, Loai, SoDT, DiaChi FROM KhachHang";
 
             SqlCommand command = new SqlCommand(sqlQuery, this.conn);
 
@@ -457,6 +457,7 @@ namespace DoDienTu
                     column = new Dictionary<string, string>();
 
                     column["MaKH"] = reader["MaKH"].ToString();
+                    column["CCCD"] = reader["CCCD"].ToString();
                     column["TenKH"] = reader["TenKH"].ToString();
                     column["Loai"] = reader["Loai"].ToString();
                     column["SoDT"] = reader["SoDT"].ToString();
@@ -475,9 +476,9 @@ namespace DoDienTu
 
         }
 
-        public bool AddNewRowCl(string name, string type, string phone, string adr)
+        public bool AddNewRowCl(string name, string type, string phone, string adr, string CCCD)
         {
-            string addCmd = "INSERT INTO KhachHang (TenKH, Loai, SoDT, DiaChi) values (@val1, @val2, @val3, @val4)";
+            string addCmd = "INSERT INTO KhachHang (TenKH,CCCD, Loai, SoDT, DiaChi) values (@val1, @val2, @val3, @val4, @val5)";
             using (SqlCommand comm = new SqlCommand())
             {
                 comm.Connection = conn;
@@ -486,6 +487,7 @@ namespace DoDienTu
                 comm.Parameters.AddWithValue("@val2", type);
                 comm.Parameters.AddWithValue("@val3", phone);
                 comm.Parameters.AddWithValue("@val4", adr);
+                comm.Parameters.AddWithValue("@val5", CCCD);
                 try
                 {
                     comm.ExecuteNonQuery();
@@ -521,9 +523,9 @@ namespace DoDienTu
             }
         }
 
-        public bool UpdateRowCl(string cid, string name, string type, string phone, string adr)
+        public bool UpdateRowCl(string cid, string name, string type, string phone, string adr, string CCCD)
         {
-            string addCmd = "update KhachHang set TenKH = @val2, Loai = @val3, SoDT =  @val4, DiaChi = @val5 where MaKH = @val1";
+            string addCmd = "update KhachHang set TenKH = @val2,CCCD=@val6, Loai = @val3, SoDT =  @val4, DiaChi = @val5 where MaKH = @val1";
             using (SqlCommand comm = new SqlCommand())
             {
                 comm.Connection = conn;
@@ -533,6 +535,7 @@ namespace DoDienTu
                 comm.Parameters.AddWithValue("@val3", type);
                 comm.Parameters.AddWithValue("@val4", phone);
                 comm.Parameters.AddWithValue("@val5", adr);
+                comm.Parameters.AddWithValue("@val6", CCCD);
 
                 try
                 {

@@ -9,9 +9,18 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using iTextSharp.text.pdf;
 using iTextSharp.text;
+using DocumentFormat.OpenXml;
+using DocumentFormat.OpenXml.Packaging;
+using DocumentFormat.OpenXml.Spreadsheet;
+using System;
+using System.Collections.Generic;
+using System.Data;
 using System.IO;
+using System.IO;
+using ClosedXML.Excel;
+using DocumentFormat.OpenXml.Wordprocessing;
 
-namespace DoDienTu
+namespace CHO_THUE_XE
 {
     public partial class FormClient : Form
     {
@@ -46,6 +55,7 @@ namespace DoDienTu
             txtType.Enabled = false;
             txtPhone.Enabled = false;
             txtAdr.Enabled = false;
+            txtCCCD.Enabled = false;
             btnSave.Enabled = false;
         }
 
@@ -56,10 +66,11 @@ namespace DoDienTu
             {
                 int index = dgv1.Rows.Add();
                 dgv1.Rows[index].Cells[0].Value = row["MaKH"];
-                dgv1.Rows[index].Cells[1].Value = row["TenKH"];
-                dgv1.Rows[index].Cells[2].Value = row["Loai"];
-                dgv1.Rows[index].Cells[3].Value = row["SoDT"];
-                dgv1.Rows[index].Cells[4].Value = row["DiaChi"];
+                dgv1.Rows[index].Cells[2].Value = row["TenKH"];
+                dgv1.Rows[index].Cells[1].Value = row["CCCD"];
+                dgv1.Rows[index].Cells[3].Value = row["Loai"];
+                dgv1.Rows[index].Cells[4].Value = row["SoDT"];
+                dgv1.Rows[index].Cells[5].Value = row["DiaChi"];
             }
         }
 
@@ -70,16 +81,18 @@ namespace DoDienTu
             txtPhone.Enabled = true;
             txtAdr.Enabled = true;
             btnSave.Enabled = true;
+            txtCCCD.Enabled = true;
 
             txtClient.Text = String.Empty;
             txtType.Text = String.Empty;
             txtPhone.Text = String.Empty;
             txtAdr.Text = String.Empty;
+            txtCCCD.Text = String.Empty;
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (!dm.AddNewRowCl(txtClient.Text, txtType.Text, txtPhone.Text, txtAdr.Text))
+            if (!dm.AddNewRowCl(txtClient.Text, txtType.Text, txtPhone.Text, txtAdr.Text, txtCCCD.Text))
             {
                 MessageBox.Show("Failed");
             }
@@ -92,6 +105,7 @@ namespace DoDienTu
             txtPhone.Enabled = false;
             txtAdr.Enabled = false;
             btnSave.Enabled = false;
+            txtCCCD.Enabled = false;
         }
 
         private void btnLoad_Click(object sender, EventArgs e)
@@ -103,6 +117,7 @@ namespace DoDienTu
             txtPhone.Enabled = true;
             txtAdr.Enabled = true;
             btnSave.Enabled = true;
+            txtCCCD.Enabled = true;
         }
 
         private void btnExit_Click(object sender, EventArgs e)
@@ -112,6 +127,7 @@ namespace DoDienTu
             txtPhone.Enabled = false;
             txtAdr.Enabled = false;
             btnSave.Enabled = false;
+            txtCCCD.Enabled = false;
         }
 
         private void btnDel_Click(object sender, EventArgs e)
@@ -140,6 +156,7 @@ namespace DoDienTu
             txtType.Text = dgv1.Rows[e.RowIndex].Cells[2].Value.ToString();
             txtPhone.Text = dgv1.Rows[e.RowIndex].Cells[3].Value.ToString();
             txtAdr.Text = dgv1.Rows[e.RowIndex].Cells[4].Value.ToString();
+            txtCCCD.Text = dgv1.Rows[e.RowIndex].Cells[5].Value.ToString();
         }
 
         private void btnUdt_Click(object sender, EventArgs e)
@@ -149,8 +166,9 @@ namespace DoDienTu
             txtPhone.Enabled = true;
             txtAdr.Enabled = true;
             btnSave.Enabled = true;
+            txtCCCD.Enabled = true;
             txtClient.Focus();
-            if (!dm.UpdateRowCl(dgv1.Rows[dgv1.CurrentCell.RowIndex].Cells[0].Value.ToString(), txtClient.Text, txtType.Text, txtPhone.Text, txtAdr.Text))
+            if (!dm.UpdateRowCl(dgv1.Rows[dgv1.CurrentCell.RowIndex].Cells[0].Value.ToString(), txtClient.Text, txtType.Text, txtPhone.Text, txtAdr.Text, txtCCCD.Text))
             {
                 MessageBox.Show("Failed");
             }
@@ -161,70 +179,51 @@ namespace DoDienTu
 
         private void txtPrint_Click(object sender, EventArgs e)
         {
-            dgv1.AllowUserToAddRows = false;
-            if (dgv1.Rows.Count > 0)
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Excel Files (*.xlsx)|*.xlsx|All files (*.*)|*.*";
+            saveFileDialog.Title = "Save Excel File";
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                SaveFileDialog save = new SaveFileDialog();
-                save.Filter = "PDF (*.pdf)|*.pdf";
-                save.FileName = "Result.pdf";
-                bool ErrorMessage = false;
-                if (save.ShowDialog() == DialogResult.OK)
+                ExportToExcel(dgv1, saveFileDialog.FileName);
+                MessageBox.Show("Export successful!");
+            }
+
+        }
+
+        private static void ExportToExcel(DataGridView dgv1, string filePath)
+        {
+            try
+            {
+                using (var workbook = new XLWorkbook())
                 {
-                    if (File.Exists(save.FileName))
+                    var worksheet = workbook.Worksheets.Add("Sheet1");
+
+                    // Write header row
+                    for (int i = 1; i <= dgv1.Columns.Count; i++)
                     {
-                        try
+                        worksheet.Cell(1, i).Value = dgv1.Columns[i - 1].HeaderText;
+                    }
+
+                    // Write data
+                    for (int i = 0; i < dgv1.Rows.Count; i++)
+                    {
+                        for (int j = 0; j < dgv1.Columns.Count; j++)
                         {
-                            File.Delete(save.FileName);
-                        }
-                        catch (Exception ex)
-                        {
-                            ErrorMessage = true;
-                            MessageBox.Show("Unable to wride data in disk" + ex.Message);
+                            object cellValue = dgv1.Rows[i].Cells[j].Value;
+                            worksheet.Cell(i + 2, j + 1).Value = cellValue != null ? cellValue.ToString() : string.Empty;
                         }
                     }
-                    if (!ErrorMessage)
-                    {
-                        try
-                        {
-                            PdfPTable pTable = new PdfPTable(dgv1.Columns.Count);
-                            pTable.DefaultCell.Padding = 2;
-                            pTable.WidthPercentage = 100;
-                            pTable.HorizontalAlignment = Element.ALIGN_LEFT;
-                            foreach (DataGridViewColumn col in dgv1.Columns)
-                            {
-                                PdfPCell pCell = new PdfPCell(new Phrase(col.HeaderText));
-                                pTable.AddCell(pCell);
-                            }
-                            foreach (DataGridViewRow viewRow in dgv1.Rows)
-                            {
-                                foreach (DataGridViewCell dcell in viewRow.Cells)
-                                {
-                                    pTable.AddCell(dcell.Value.ToString());
-                                }
-                            }
-                            using (FileStream fileStream = new FileStream(save.FileName, FileMode.Create))
-                            {
-                                Document document = new Document(PageSize.A4, 8f, 16f, 16f, 8f);
-                                PdfWriter.GetInstance(document, fileStream);
-                                document.Open();
-                                document.Add(pTable);
-                                document.Close();
-                                fileStream.Close();
-                            }
-                            MessageBox.Show("Data Export Successfully", "info");
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show("Error while exporting Data" + ex.Message);
-                        }
-                    }
+
+                    workbook.SaveAs(filePath);
                 }
+
+                MessageBox.Show("Export successful!");
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("No Record Found", "Info");
+                MessageBox.Show($"Error during export: {ex.Message}", "Error");
             }
-            dgv1.AllowUserToAddRows = true;
         }
 
         private void pictureBox2_Click(object sender, EventArgs e)
@@ -258,5 +257,11 @@ namespace DoDienTu
         {
 
         }
+
+        private void txtPhone_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
+

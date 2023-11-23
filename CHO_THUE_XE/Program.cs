@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace DoDienTu
+namespace CHO_THUE_XE
 {
     static class Program
     {

@@ -7,7 +7,7 @@ using System.Windows.Forms;
 using System.Collections.Generic;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
-namespace DoDienTu
+namespace CHO_THUE_XE
 {
     public partial class FormForgotPassword : Form
     {

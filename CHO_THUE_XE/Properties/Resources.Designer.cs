@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DoDienTu.Properties {
+namespace CHO_THUE_XE.Properties {
     using System;
     
     

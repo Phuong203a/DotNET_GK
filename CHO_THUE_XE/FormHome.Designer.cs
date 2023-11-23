@@ -1,4 +1,4 @@
-﻿namespace DoDienTu
+﻿namespace CHO_THUE_XE
 {
     partial class FormHome
     {
@@ -94,8 +94,7 @@
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.White;
-            this.pictureBox1.Image = global::DoDienTu.Properties.Resources.icon_home1;
-            this.pictureBox1.InitialImage = global::DoDienTu.Properties.Resources.icon_home;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(0, 3);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(236, 167);

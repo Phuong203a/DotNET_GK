@@ -12,7 +12,7 @@ using iTextSharp.text;
 using static iTextSharp.text.pdf.PRTokeniser;
 using System.IO;
 
-namespace DoDienTu
+namespace CHO_THUE_XE
 {
     public partial class FormSupplier : Form
     {
@@ -241,6 +241,11 @@ namespace DoDienTu
         }
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtSup_TextChanged(object sender, EventArgs e)
         {
 
         }

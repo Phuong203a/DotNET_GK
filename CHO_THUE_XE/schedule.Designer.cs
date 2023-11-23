@@ -1,4 +1,4 @@
-﻿namespace DoDienTu
+﻿namespace CHO_THUE_XE
 {
     partial class schedule
     {
@@ -92,6 +92,7 @@
             this.txtPrint.TabIndex = 49;
             this.txtPrint.Text = "Print";
             this.txtPrint.UseVisualStyleBackColor = false;
+            this.txtPrint.Click += new System.EventHandler(this.txtPrint_Click);
             // 
             // btnLoad
             // 
@@ -115,6 +116,7 @@
             this.btnExit.TabIndex = 47;
             this.btnExit.Text = "Exit";
             this.btnExit.UseVisualStyleBackColor = false;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
             // btnSave
             // 
@@ -126,6 +128,7 @@
             this.btnSave.TabIndex = 46;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = false;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnUdt
             // 
@@ -137,6 +140,7 @@
             this.btnUdt.TabIndex = 45;
             this.btnUdt.Text = "Update";
             this.btnUdt.UseVisualStyleBackColor = false;
+            this.btnUdt.Click += new System.EventHandler(this.btnUdt_Click);
             // 
             // btnDel
             // 
@@ -148,6 +152,7 @@
             this.btnDel.TabIndex = 44;
             this.btnDel.Text = "Delete";
             this.btnDel.UseVisualStyleBackColor = false;
+            this.btnDel.Click += new System.EventHandler(this.btnDel_Click);
             // 
             // groupBox1
             // 
@@ -342,6 +347,7 @@
             this.txtSup.Name = "txtSup";
             this.txtSup.Size = new System.Drawing.Size(227, 20);
             this.txtSup.TabIndex = 2;
+            this.txtSup.TextChanged += new System.EventHandler(this.txtSup_TextChanged);
             // 
             // dgv1
             // 
@@ -361,6 +367,7 @@
             this.dgv1.Name = "dgv1";
             this.dgv1.Size = new System.Drawing.Size(1350, 253);
             this.dgv1.TabIndex = 42;
+            this.dgv1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv1_CellContentClick);
             // 
             // ID
             // 
@@ -417,6 +424,7 @@
             this.btnAdd.TabIndex = 41;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = false;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // label6
             // 

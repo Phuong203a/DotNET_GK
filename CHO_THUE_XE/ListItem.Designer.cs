@@ -1,4 +1,4 @@
-﻿namespace DoDienTu
+﻿namespace CHO_THUE_XE
 {
     partial class ListItem
     {

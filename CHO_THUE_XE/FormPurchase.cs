@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace DoDienTu
+namespace CHO_THUE_XE
 {
     public partial class FormPurchase : Form
     {
@@ -82,6 +82,11 @@ namespace DoDienTu
             this.Hide();
             FormHome fh = new FormHome();
             fh.ShowDialog();
+        }
+
+        private void txtTotal_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

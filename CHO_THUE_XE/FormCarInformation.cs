@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 
-namespace DoDienTu
+namespace CHO_THUE_XE
 {
     public partial class FormCarInformation : Form
     {

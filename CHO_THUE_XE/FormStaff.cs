@@ -11,7 +11,7 @@ using System.IO;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 using System.Text.RegularExpressions;
 
-namespace DoDienTu
+namespace CHO_THUE_XE
 {
     public partial class FormStaff : Form
     {
