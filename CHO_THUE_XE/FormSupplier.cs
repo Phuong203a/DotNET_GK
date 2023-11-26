@@ -74,10 +74,10 @@ namespace CHO_THUE_XE
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (!dm.AddNewRowSu(txtSup.Text, txtPhone.Text, txtAdr.Text))
-            {
-                MessageBox.Show("Failed");
-            }
+            //if (!dm.AddNewRowSu(txtSup.Text, txtPhone.Text, txtAdr.Text))
+            //{
+            //    MessageBox.Show("Failed");
+            //}
 
             ResetForm();
             LoadSupplierData();
@@ -140,10 +140,10 @@ namespace CHO_THUE_XE
             txtAdr.Enabled = true;
             btnSave.Enabled = true;
             txtSup.Focus();
-            if (!dm.UpdateRowSu(dgv1.Rows[dgv1.CurrentCell.RowIndex].Cells[0].Value.ToString(), txtSup.Text, txtPhone.Text, txtAdr.Text))
-            {
-                MessageBox.Show("Failed");
-            }
+            //if (!dm.UpdateRowSu(dgv1.Rows[dgv1.CurrentCell.RowIndex].Cells[0].Value.ToString(), txtSup.Text, txtPhone.Text, txtAdr.Text))
+            //{
+            //    MessageBox.Show("Failed");
+            //}
 
             ResetForm();
             LoadSupplierData();

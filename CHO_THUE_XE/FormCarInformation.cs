@@ -25,7 +25,7 @@ namespace CHO_THUE_XE
         private void LoadDataModel()
         {
             dm = new DataModel();
-
+            LoadCarData();
         }
 
         public void ResetForm()
@@ -39,45 +39,25 @@ namespace CHO_THUE_XE
             InitializeForm();
         }
 
-        private void LoadDeviceData()
+        private void LoadCarData()
         {
-            List<Dictionary<string, string>> rows = dm.FetchAllRowDv();
+            List<Dictionary<string, string>> rows = dm.FetchAllRowDv(null,null,null);
             foreach (Dictionary<string, string> row in rows)
             {
                 int index = dgv1.Rows.Add();
-                dgv1.Rows[index].Cells[0].Value = row["MaSP"];
-                dgv1.Rows[index].Cells[1].Value = row["TenSP"];
-                dgv1.Rows[index].Cells[2].Value = row["SoLuongTon"];
-                dgv1.Rows[index].Cells[3].Value = row["DonGia"];
-                dgv1.Rows[index].Cells[4].Value = row["MoTaSP"];
+                dgv1.Rows[index].Cells[0].Value = row["Id"];
+                dgv1.Rows[index].Cells[1].Value = row["Name"];
+                dgv1.Rows[index].Cells[2].Value = row["Brand"];
+                dgv1.Rows[index].Cells[3].Value = row["Type"];
+                dgv1.Rows[index].Cells[4].Value = row["Model"];
             }
         }
 
         private void InitializeForm()
         {
-            dgv1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            txtDevice.Enabled = false;
-            txtQuantity.Enabled = false;
-            txtPrice.Enabled = false;
-            txtInfo.Enabled = false;
-            btnUpload.Enabled = false;
-            btnSave.Enabled = false;
         }
 
-        private void btnAdd_Click(object sender, EventArgs e)
-        {
-            txtDevice.Enabled = true;
-            txtQuantity.Enabled = true;
-            txtPrice.Enabled = true;
-            txtInfo.Enabled = true;
-            btnUpload.Enabled = true;
-            btnSave.Enabled = true;
-
-            txtDevice.Text = String.Empty;
-            txtQuantity.Text = String.Empty;
-            txtPrice.Text = String.Empty;
-            txtInfo.Text = String.Empty;
-        }
+        
 
         private void btnSave_Click(object sender, EventArgs e)
         {
@@ -85,42 +65,39 @@ namespace CHO_THUE_XE
             byte[] arr;
             ImageConverter convert = new ImageConverter();
             arr = (byte[])convert.ConvertTo(img, typeof(byte[]));
-            if (!dm.AddNewRowDv(txtDevice.Text, txtQuantity.Text, txtPrice.Text, txtInfo.Text, arr))
+            if (!dm.AddNewRowDv(Int32.Parse(txtId.Text), txtName.Text, txtBrand.Text, txtType.Text, txtModel.Text, arr))
             {
                 MessageBox.Show("Failed");
             }
 
             ResetForm();
-            LoadDeviceData();
+            LoadCarData();
 
-            txtDevice.Enabled = false;
-            txtQuantity.Enabled = false;
-            txtPrice.Enabled = false;
-            txtInfo.Enabled = false;
-            btnUpload.Enabled = false;
-            btnSave.Enabled = false;
+            txtId.Enabled = true;
+            txtBrand.Enabled = true;
+            txtType.Enabled = true;
+            txtName.Enabled = true;
+            txtModel.Enabled = true;
+            btnUpload.Enabled = true;
+            btnSave.Enabled = true;
+
+            txtId.Text = String.Empty;
+            txtBrand.Text = String.Empty;
+            txtType.Text = String.Empty;
+            txtName.Text = String.Empty;
+            txtModel.Text = String.Empty;
         }
 
         private void btnLoad_Click(object sender, EventArgs e)
         {
             ResetForm();
-            LoadDeviceData();
-            txtDevice.Enabled = true;
-            txtQuantity.Enabled = true;
-            txtPrice.Enabled = true;
-            txtInfo.Enabled = true;
-            btnUpload.Enabled = true;
-            btnSave.Enabled = true;
+            LoadCarData();
+
         }
 
         private void btnExit_Click(object sender, EventArgs e)
         {
-            txtDevice.Enabled = false;
-            txtQuantity.Enabled = false;
-            txtPrice.Enabled = false;
-            txtInfo.Enabled = false;
-            btnUpload.Enabled = false;
-            btnSave.Enabled = false;
+
         }
 
         private void btnDel_Click(object sender, EventArgs e)
@@ -129,13 +106,18 @@ namespace CHO_THUE_XE
             switch (choose)
             {
                 case DialogResult.Yes:
-                    if (!dm.RemoveRowDv(dgv1.Rows[dgv1.CurrentCell.RowIndex].Cells[0].Value.ToString()))
+                    if (!dm.RemoveRowDv(Int32.Parse(dgv1.Rows[dgv1.CurrentCell.RowIndex].Cells[0].Value.ToString())))
                     {
                         MessageBox.Show("Failed");
                     }
-
+                    txtId.Text = String.Empty;
+                    txtBrand.Text = String.Empty;
+                    txtType.Text = String.Empty;
+                    txtName.Text = String.Empty;
+                    txtModel.Text = String.Empty;
                     ResetForm();
-                    LoadDeviceData();
+                    LoadCarData();
+
                     break;
                 case DialogResult.No:
                     MessageBox.Show("Cancelled");
@@ -145,37 +127,40 @@ namespace CHO_THUE_XE
 
         private void dgv1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            txtDevice.Text = dgv1.Rows[e.RowIndex].Cells[1].Value.ToString();
-            txtQuantity.Text = dgv1.Rows[e.RowIndex].Cells[2].Value.ToString();
-            txtPrice.Text = dgv1.Rows[e.RowIndex].Cells[3].Value.ToString();
-            txtInfo.Text = dgv1.Rows[e.RowIndex].Cells[4].Value.ToString();
+            txtId.Text = dgv1.Rows[e.RowIndex].Cells[0].Value.ToString();
+            txtName.Text = dgv1.Rows[e.RowIndex].Cells[1].Value.ToString();
+            txtBrand.Text = dgv1.Rows[e.RowIndex].Cells[2].Value.ToString();
+            txtType.Text = dgv1.Rows[e.RowIndex].Cells[3].Value.ToString();
+            txtModel.Text = dgv1.Rows[e.RowIndex].Cells[4].Value.ToString();
 
             Byte[] data = new Byte[0];
-            data = dm.loadImgDv(dgv1.Rows[e.RowIndex].Cells[0].Value.ToString());
+            data = dm.loadImgDv(Int32.Parse( dgv1.Rows[e.RowIndex].Cells[0].Value.ToString()));
             MemoryStream ms = new MemoryStream(data);
             pbAva.Image = Image.FromStream(ms);
         }
 
         private void btnUdt_Click(object sender, EventArgs e)
         {
-            txtDevice.Enabled = true;
-            txtQuantity.Enabled = true;
-            txtPrice.Enabled = true;
-            txtInfo.Enabled = true;
+            txtId.Enabled = true;
+            txtName.Enabled = true;
+            txtBrand.Enabled = true;
+            txtType.Enabled = true;
+            txtModel.Enabled = true;
             btnUpload.Enabled = true;
             btnSave.Enabled = true;
-            txtDevice.Focus();
+            txtId.Focus();
             Image img = pbAva.Image;
             byte[] arr;
             ImageConverter convert = new ImageConverter();
             arr = (byte[])convert.ConvertTo(img, typeof(byte[]));
-            if (!dm.UpdateRowDv(dgv1.Rows[dgv1.CurrentCell.RowIndex].Cells[0].Value.ToString(), txtDevice.Text, txtQuantity.Text, txtPrice.Text, txtInfo.Text, arr))
+            if (!dm.UpdateRowDv(Int32.Parse(dgv1.Rows[dgv1.CurrentCell.RowIndex].Cells[0].Value.ToString()), txtName.Text,
+                txtBrand.Text, txtType.Text, txtModel.Text, arr))
             {
                 MessageBox.Show("Failed");
             }
 
             ResetForm();
-            LoadDeviceData();
+            LoadCarData();
         }
 
         private void btnUpload_Click(object sender, EventArgs e)
@@ -246,6 +231,21 @@ namespace CHO_THUE_XE
         private void dgv1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            List<Dictionary<string, string>> rows = dm.FetchAllRowDv(txtBrand.Text, txtType.Text, txtModel.Text);
+            ResetForm();
+            foreach (Dictionary<string, string> row in rows)
+            {
+                int index = dgv1.Rows.Add();
+                dgv1.Rows[index].Cells[0].Value = row["Id"];
+                dgv1.Rows[index].Cells[1].Value = row["Name"];
+                dgv1.Rows[index].Cells[2].Value = row["Brand"];
+                dgv1.Rows[index].Cells[3].Value = row["Type"];
+                dgv1.Rows[index].Cells[4].Value = row["Model"];
+            }
         }
     }
 }

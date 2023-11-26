@@ -17,6 +17,7 @@ namespace CHO_THUE_XE
         {
             InitializeComponent();
             LoadDataModel();
+            LoadSupplierData();
         }
         private void LoadDataModel()
         {
@@ -42,36 +43,23 @@ namespace CHO_THUE_XE
                 dgv1.Rows[index].Cells[3].Value = row["IdXe"];
                 dgv1.Rows[index].Cells[4].Value = row["NgayThue"];
                 dgv1.Rows[index].Cells[5].Value = row["NgayTra"];
-                dgv1.Rows[index].Cells[4].Value = row["Status"];
-                dgv1.Rows[index].Cells[5].Value = row["GhiChu"];
+                dgv1.Rows[index].Cells[6].Value = row["Status"];
+                dgv1.Rows[index].Cells[7].Value = row["GhiChu"];
             }
         }
 
         private void btnLoad_Click(object sender, EventArgs e)
         {
-            List<Dictionary<string, string>> rows = dm.FetchAllRowSu();
-            foreach (Dictionary<string, string> row in rows)
-            {
-                int index = dgv1.Rows.Add();
-                dgv1.Rows[index].Cells[0].Value = row["ID"];
-                dgv1.Rows[index].Cells[1].Value = row["MaKH"];
-                dgv1.Rows[index].Cells[2].Value = row["Sdt"];
-                dgv1.Rows[index].Cells[3].Value = row["IdXe"];
-                dgv1.Rows[index].Cells[4].Value = row["NgayThue"];
-                dgv1.Rows[index].Cells[5].Value = row["NgayTra"];
-                dgv1.Rows[index].Cells[4].Value = row["Status"];
-                dgv1.Rows[index].Cells[5].Value = row["GhiChu"];
-            }
             ResetForm();
             LoadSupplierData();
             txtSup.Enabled = true;
             txtPhone.Enabled = true;
-            txtAdr.Enabled = true;
-            textBox4.Enabled = true;
-            dateTimePicker1.Enabled = true;
-            dateTimePicker3.Enabled = true;
-            textBox1.Enabled = true;
-            textBox5.Enabled = true;
+            txtCustId.Enabled = true;
+            txtIdCar.Enabled = true;
+            dateNgayThue.Enabled = true;
+            dateNgayTra.Enabled = true;
+            txtGhiChu.Enabled = true;
+            txtStatus.Enabled = true;
         }
 
         private void pictureBox3_Click(object sender, EventArgs e)
@@ -96,23 +84,32 @@ namespace CHO_THUE_XE
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
+
+            if (!dm.AddNewRowSu(Int32.Parse(txtSup.Text), Int32.Parse(txtCustId.Text), txtPhone.Text, Int32.Parse(txtIdCar.Text), dateNgayThue.Value, dateNgayTra.Value, txtStatus.Text, txtGhiChu.Text))
+            {
+                MessageBox.Show("Failed");
+            }
+
+            ResetForm();
+            LoadSupplierData();
+
             txtSup.Enabled = true;
             txtPhone.Enabled = true;
-            txtAdr.Enabled = true;
-            textBox4.Enabled = true;
-            dateTimePicker1.Enabled = true;
-            dateTimePicker3.Enabled = true;
-            textBox1.Enabled = true;
-            textBox5.Enabled = true;
+            txtCustId.Enabled = true;
+            txtIdCar.Enabled = true;
+            dateNgayThue.Enabled = true;
+            dateNgayTra.Enabled = true;
+            txtGhiChu.Enabled = true;
+            txtStatus.Enabled = true;
 
             txtSup.Text = String.Empty;
             txtPhone.Text = String.Empty;
-            txtAdr.Text = String.Empty;
-            textBox4.Text = String.Empty;
-            dateTimePicker1.Text = String.Empty;
-            dateTimePicker3.Text= String.Empty;
-            textBox1.Text = String.Empty;
-            textBox5.Text = String.Empty;
+            txtCustId.Text = String.Empty;
+            txtIdCar.Text = String.Empty;
+            dateNgayThue.Text = String.Empty;
+            dateNgayTra.Text= String.Empty;
+            txtGhiChu.Text = String.Empty;
+            txtStatus.Text = String.Empty;
         }
 
         private void txtSup_TextChanged(object sender, EventArgs e)
@@ -142,36 +139,36 @@ namespace CHO_THUE_XE
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (!dm.AddNewRowSu(txtSup.Text, txtPhone.Text, txtAdr.Text, textBox4.Text, dateTimePicker1.MaxDate, dateTimePicker3.MaxDate, textBox1.Text, textBox5.Text))
-            {
-                MessageBox.Show("Failed");
-            }
 
             ResetForm();
             LoadSupplierData();
 
             txtSup.Enabled = false;
             txtPhone.Enabled = false;
-            txtAdr.Enabled = false;
-            textBox4.Enabled= false;
-            dateTimePicker1.Enabled=false;
-            dateTimePicker3.Enabled=false;
-            textBox1.Enabled=false;
-            textBox5.Enabled=false;
+            txtCustId.Enabled = false;
+            txtIdCar.Enabled= false;
+            dateNgayThue.Enabled=false;
+            dateNgayTra.Enabled=false;
+            txtGhiChu.Enabled=false;
+            txtStatus.Enabled=false;
         }
 
         private void btnUdt_Click(object sender, EventArgs e)
         {
             txtSup.Enabled = true;
             txtPhone.Enabled = true;
-            txtAdr.Enabled = true;
-            textBox4.Enabled = true;
-            dateTimePicker1.Enabled=true;
-            dateTimePicker3.Enabled=true;
-            textBox1.Enabled=true;
-            textBox5.Enabled=true;
+            txtCustId.Enabled = true;
+            txtIdCar.Enabled = true;
+            dateNgayThue.Enabled=true;
+            dateNgayTra.Enabled=true;
+            txtGhiChu.Enabled=true;
+            txtStatus.Enabled=true;
             txtSup.Focus();
-            if (!dm.UpdateRowSu(dgv1.Rows[dgv1.CurrentCell.RowIndex].Cells[0].Value.ToString(), txtSup.Text, txtPhone.Text, txtAdr.Text, textBox4.Text, dateTimePicker1.MaxDate, dateTimePicker3.MaxDate, textBox1.Text, textBox5.Text))
+            if (!dm.UpdateRowSu(Int32.Parse( dgv1.Rows[dgv1.CurrentCell.RowIndex].Cells[0].Value.ToString())
+                , txtSup.Text, txtPhone.Text,
+                txtCustId.Text, txtIdCar.Text,
+                dateNgayThue.Value, dateNgayTra.Value, 
+                txtGhiChu.Text, txtStatus.Text))
             {
                 MessageBox.Show("Failed");
             }

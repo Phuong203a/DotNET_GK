@@ -666,7 +666,6 @@
             this.Controls.Add(this.pictureBox16);
             this.Controls.Add(this.panel10);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "StyleCar";
             this.panel10.ResumeLayout(false);
             this.panel10.PerformLayout();
             this.panel16.ResumeLayout(false);

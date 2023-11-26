@@ -20,7 +20,7 @@ namespace CHO_THUE_XE
         int functionPrice;
         int totalPrice;
 
-        datamodel dm;
+        DataModel dm;
         SqlConnection conn;
         System.Data.SqlClient.SqlConnectionStringBuilder builder;
         public StyleCar()
@@ -46,7 +46,7 @@ namespace CHO_THUE_XE
 
         private void textBox3_TextChanged(object sender, EventArgs e)
         {
-            dm= new totalPrice;
+            //dm = new totalPric;
         }
     
 
@@ -57,7 +57,7 @@ namespace CHO_THUE_XE
 
         private void dgv1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            dm = new datamodel();
+            dm = new DataModel();
 
         }
 

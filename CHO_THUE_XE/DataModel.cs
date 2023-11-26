@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 using System.Windows.Forms;
+using DocumentFormat.OpenXml.Office2010.Excel;
 
 namespace CHO_THUE_XE
 {
@@ -306,13 +307,43 @@ namespace CHO_THUE_XE
             }
         }
 
-        public List<Dictionary<string, string>> FetchAllRowDv()
+        public List<Dictionary<string, string>> FetchAllRowDv(string brandFilter, string typeFilter, string modelFilter)
         {
             List<Dictionary<string, string>> rows = new List<Dictionary<string, string>>();
             Dictionary<string, string> column;
-            string sqlQuery = "SELECT MaSP, TenSP, SoLuongTon, DonGia, MoTaSP FROM SanPham";
+            string sqlQuery = "SELECT Id, Name, Brand, Type, Model FROM Car where 1=1 ";
+            SqlCommand command;
+            if (brandFilter != null && !brandFilter.Equals(""))
+            {
+                sqlQuery+= " AND Brand = @val1 ";
+            }
+            if (typeFilter != null && !typeFilter.Equals(""))
+            {
+                sqlQuery += " AND Type = @val2 ";
+            }
+            if (modelFilter != null && !modelFilter.Equals(""))
+            {
+                sqlQuery += " AND Model = @val3 ";
+            }
 
-            SqlCommand command = new SqlCommand(sqlQuery, this.conn);
+
+             command = new SqlCommand(sqlQuery, this.conn);
+            if (brandFilter != null && !brandFilter.Equals(""))
+            {
+                command.Parameters.AddWithValue("@val1", brandFilter);
+
+            }
+            if (typeFilter != null && !typeFilter.Equals(""))
+            {
+                command.Parameters.AddWithValue("@val2", typeFilter);
+
+
+            }
+            if (modelFilter != null && !modelFilter.Equals(""))
+            {
+                command.Parameters.AddWithValue("@val3", modelFilter);
+
+            }
 
             try
             {
@@ -322,11 +353,11 @@ namespace CHO_THUE_XE
                 {    //Every new row will create a new dictionary that holds the columns
                     column = new Dictionary<string, string>();
 
-                    column["MaSP"] = reader["MaSP"].ToString();
-                    column["TenSP"] = reader["TenSP"].ToString();
-                    column["SoLuongTon"] = reader["SoLuongTon"].ToString();
-                    column["DonGia"] = reader["DonGia"].ToString();
-                    column["MoTaSP"] = reader["MoTaSP"].ToString();
+                    column["Id"] = reader["Id"].ToString();
+                    column["Name"] = reader["Name"].ToString();
+                    column["Brand"] = reader["Brand"].ToString();
+                    column["Type"] = reader["Type"].ToString();
+                    column["Model"] = reader["Model"].ToString();
                     rows.Add(column); //Place the dictionary into the list
                 }
                 reader.Close();
@@ -341,9 +372,9 @@ namespace CHO_THUE_XE
 
         }
 
-        public byte[] loadImgDv(string id)
+        public byte[] loadImgDv(int id)
         {
-            string sqlQuery = "Select Picture from SanPham where MaSP = @val1";
+            string sqlQuery = "Select Picture from Car where Id = @val1";
             // int result = command.ExecuteNonQuery();
             byte[] pic;
             using (SqlCommand comm = new SqlCommand())
@@ -367,18 +398,19 @@ namespace CHO_THUE_XE
             }
         }
 
-        public bool AddNewRowDv(string name, string quantity, string price, string info, byte[] img)
+        public bool AddNewRowDv(int id, string name, string brand, string type, string model, byte[] img)
         {
-            string addCmd = "INSERT INTO SanPham (TenSP, SoLuongTon, DonGia, MoTaSP, Picture) values (@val1, @val2, @val3, @val4, @val5)";
+            string addCmd = "INSERT INTO Car (Id, Name, Brand, Type,Model, Picture) values (@val1, @val2, @val3, @val4, @val5, @val6)";
             using (SqlCommand comm = new SqlCommand())
             {
                 comm.Connection = conn;
                 comm.CommandText = addCmd;
-                comm.Parameters.AddWithValue("@val1", name);
-                comm.Parameters.AddWithValue("@val2", quantity);
-                comm.Parameters.AddWithValue("@val3", price);
-                comm.Parameters.AddWithValue("@val4", info);
-                comm.Parameters.AddWithValue("@val5", img);
+                comm.Parameters.AddWithValue("@val1", id);
+                comm.Parameters.AddWithValue("@val2", name);
+                comm.Parameters.AddWithValue("@val3", brand);
+                comm.Parameters.AddWithValue("@val4", type);
+                comm.Parameters.AddWithValue("@val5", model);
+                comm.Parameters.AddWithValue("@val6", img);
                 try
                 {
                     comm.ExecuteNonQuery();
@@ -392,9 +424,9 @@ namespace CHO_THUE_XE
             }
         }
 
-        public bool RemoveRowDv(string id)
+        public bool RemoveRowDv(int id)
         {
-            string addCmd = "DELETE FROM SanPham where MaSP = @val1";
+            string addCmd = "DELETE FROM Car where Id = @val1";
             using (SqlCommand comm = new SqlCommand())
             {
                 comm.Connection = conn;
@@ -414,18 +446,19 @@ namespace CHO_THUE_XE
             }
         }
 
-        public bool UpdateRowDv(string did, string name, string quantity, string price, string info, byte[] img)
+        public bool UpdateRowDv(int did, string name, string brand, string type, string model, byte[] img)
         {
-            string addCmd = "update SanPham set TenSP = @val2,SoLuongTon = @val3, DonGia =  @val4, MoTaSP = @val5, Picture = @val6 where MaSP = @val1";
+            string addCmd = "update Car set Name = @val2,Brand = @val3, Type =  @val4, " +
+                "Model = @val5, Picture = @val6 where Id = @val1";
             using (SqlCommand comm = new SqlCommand())
             {
                 comm.Connection = conn;
                 comm.CommandText = addCmd;
                 comm.Parameters.AddWithValue("@val1", did);
                 comm.Parameters.AddWithValue("@val2", name);
-                comm.Parameters.AddWithValue("@val3", quantity);
-                comm.Parameters.AddWithValue("@val4", price);
-                comm.Parameters.AddWithValue("@val5", info);
+                comm.Parameters.AddWithValue("@val3", brand);
+                comm.Parameters.AddWithValue("@val4", type);
+                comm.Parameters.AddWithValue("@val5", model);
                 comm.Parameters.AddWithValue("@val6", img);
 
                 try
@@ -654,21 +687,21 @@ namespace CHO_THUE_XE
 
         }
 
-        public bool AddNewRowSu(string sup, string phone, string adr, string box4, DateTime dateTimePicker1, DateTime dateTimePicker3, string box1, string box5)
+        public bool AddNewRowSu(int id, int cusId, string phone,int idCar, DateTime dateNgayThue, DateTime dateNgayTra, string status, string ghiChu)
         {
-            string addCmd = "INSERT INTO LT (ID, MaKH, Sdt, IdXe,NgayThue, NgayTra, Status,GhiChu FROM DatXe) values (@val1, @val2, @val3, @val4, @val5, @val6, @val7, @val8)";
+            string addCmd = "INSERT INTO LT (ID, MaKH, Sdt, IdXe,NgayThue, NgayTra, Status,GhiChu) values (@val1, @val2, @val3, @val4, @val5, @val6, @val7, @val8)";
             using (SqlCommand comm = new SqlCommand())
             {
                 comm.Connection = conn;
                 comm.CommandText = addCmd;
-                comm.Parameters.AddWithValue("@val1", sup);
-                comm.Parameters.AddWithValue("@val2", phone);
-                comm.Parameters.AddWithValue("@val3", adr);
-                comm.Parameters.AddWithValue("@val4", box4);
-                comm.Parameters.AddWithValue("@val1", dateTimePicker1);
-                comm.Parameters.AddWithValue("@val2", dateTimePicker3);
-                comm.Parameters.AddWithValue("@val3", box1);
-                comm.Parameters.AddWithValue("@val4", box5);
+                comm.Parameters.AddWithValue("@val1", id);
+                comm.Parameters.AddWithValue("@val2", cusId);
+                comm.Parameters.AddWithValue("@val3", phone);
+                comm.Parameters.AddWithValue("@val4", idCar);
+                comm.Parameters.AddWithValue("@val5", dateNgayThue);
+                comm.Parameters.AddWithValue("@val6", dateNgayTra);
+                comm.Parameters.AddWithValue("@val7", status);
+                comm.Parameters.AddWithValue("@val8", ghiChu);
                 try
                 {
                     comm.ExecuteNonQuery();
@@ -704,7 +737,7 @@ namespace CHO_THUE_XE
             }
         }
 
-        public bool UpdateRowSu(string sup, string phone, string adr , string box4, string text, DateTime dateTimePicker1, DateTime dateTimePicker3, string box1, string box5)
+        public bool UpdateRowSu(int sup, string phone, string adr , string box4, string text, DateTime dateTimePicker1, DateTime dateTimePicker3, string box1, string box5)
         {
             string addCmd = "update LT set MaKH=@val2, Sdt=@val3, IdXe=@val4,NgayThue=@val5, NgayTra=@val6, Status=@val7,GhiChu=@val8 where ID = @val1";
             using (SqlCommand comm = new SqlCommand())
@@ -715,10 +748,10 @@ namespace CHO_THUE_XE
                 comm.Parameters.AddWithValue("@val2", phone);
                 comm.Parameters.AddWithValue("@val3", adr);
                 comm.Parameters.AddWithValue("@val4", box4);
-                comm.Parameters.AddWithValue("@val1", dateTimePicker1);
-                comm.Parameters.AddWithValue("@val2", dateTimePicker3);
-                comm.Parameters.AddWithValue("@val3", box1);
-                comm.Parameters.AddWithValue("@val4", box5);
+                comm.Parameters.AddWithValue("@val5", dateTimePicker1);
+                comm.Parameters.AddWithValue("@val6", dateTimePicker3);
+                comm.Parameters.AddWithValue("@val7", box1);
+                comm.Parameters.AddWithValue("@val8", box5);
 
 
 
