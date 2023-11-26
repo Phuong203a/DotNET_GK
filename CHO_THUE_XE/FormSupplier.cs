@@ -14,10 +14,10 @@ using System.IO;
 
 namespace CHO_THUE_XE
 {
-    public partial class FormSupplier : Form
+    public partial class FormCarRent : Form
     {
         DataModel dm;
-        public FormSupplier()
+        public FormCarRent()
         {
             InitializeComponent();
             LoadDataModel();
@@ -26,7 +26,7 @@ namespace CHO_THUE_XE
         private void LoadDataModel()
         {
             dm = new DataModel();
-
+            LoadCarRent();
         }
 
         public void ResetForm()
@@ -42,68 +42,58 @@ namespace CHO_THUE_XE
         private void InitializeForm()
         {
             dgv1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            txtSup.Enabled = false;
+            txtId.Enabled = false;
             txtPhone.Enabled = false;
-            txtAdr.Enabled = false;
-            btnSave.Enabled = false;
+            txtCusId.Enabled = false;
         }
-        private void LoadSupplierData()
+        private void LoadCarRent()
         {
-            List<Dictionary<string, string>> rows = dm.FetchAllRowSu();
+            List<Dictionary<string, string>> rows = dm.FetchAllRowCarRent();
             foreach (Dictionary<string, string> row in rows)
             {
                 int index = dgv1.Rows.Add();
-                dgv1.Rows[index].Cells[0].Value = row["MaNCC"];
-                dgv1.Rows[index].Cells[1].Value = row["TenNCC"];
-                dgv1.Rows[index].Cells[2].Value = row["SoDT"];
-                dgv1.Rows[index].Cells[3].Value = row["DiaChi"];
+                dgv1.Rows[index].Cells[0].Value = row["Id"];
+                dgv1.Rows[index].Cells[1].Value = row["MaKH"];
+                dgv1.Rows[index].Cells[2].Value = row["MaNV"];
+                dgv1.Rows[index].Cells[3].Value = row["Sdt"];
+                dgv1.Rows[index].Cells[4].Value = row["CarId"];
+                dgv1.Rows[index].Cells[5].Value = row["GhiChu"];
             }
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            txtSup.Enabled = true;
-            txtPhone.Enabled = true;
-            txtAdr.Enabled = true;
-            btnSave.Enabled = true;
-
-            txtSup.Text = String.Empty;
-            txtPhone.Text = String.Empty;
-            txtAdr.Text = String.Empty;
-        }
-
-        private void btnSave_Click(object sender, EventArgs e)
-        {
-            //if (!dm.AddNewRowSu(txtSup.Text, txtPhone.Text, txtAdr.Text))
-            //{
-            //    MessageBox.Show("Failed");
-            //}
-
+           
             ResetForm();
-            LoadSupplierData();
+            LoadCarRent();
 
-            txtSup.Enabled = false;
-            txtPhone.Enabled = false;
-            txtAdr.Enabled = false;
-            btnSave.Enabled = false;
+            txtId.Enabled = true;
+            txtCusId.Enabled = true;
+            txtEmpId.Enabled = true;
+            txtCarId.Enabled = true;
+            txtPhone.Enabled = true;
+            txtNote.Enabled = true;
+
+            txtId.Text = String.Empty;
+            txtCusId.Text = String.Empty;
+            txtEmpId.Text = String.Empty;
+            txtCarId.Text = String.Empty;
+            txtPhone.Text = String.Empty;
+            txtNote.Text = String.Empty;
+
         }
 
         private void btnLoad_Click(object sender, EventArgs e)
         {
             ResetForm();
-            LoadSupplierData();
-            txtSup.Enabled = true;
-            txtPhone.Enabled = true;
-            txtAdr.Enabled = true;
-            btnSave.Enabled = true;
+            LoadCarRent();
         }
 
         private void btnExit_Click(object sender, EventArgs e)
         {
-            txtSup.Enabled = false;
+            txtId.Enabled = false;
             txtPhone.Enabled = false;
-            txtAdr.Enabled = false;
-            btnSave.Enabled = false;
+            txtCusId.Enabled = false;
         }
 
         private void btnDel_Click(object sender, EventArgs e)
@@ -112,13 +102,13 @@ namespace CHO_THUE_XE
             switch (choose)
             {
                 case DialogResult.Yes:
-                    if (!dm.RemoveRowSu(dgv1.Rows[dgv1.CurrentCell.RowIndex].Cells[0].Value.ToString()))
+                    if (!dm.RemoveRowCarRent(Int32.Parse( dgv1.Rows[dgv1.CurrentCell.RowIndex].Cells[0].Value.ToString())))
                     {
                         MessageBox.Show("Failed");
                     }
 
                     ResetForm();
-                    LoadSupplierData();
+                    LoadCarRent();
                     break;
                 case DialogResult.No:
                     MessageBox.Show("Cancelled");
@@ -128,25 +118,28 @@ namespace CHO_THUE_XE
 
         private void dgv1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            txtSup.Text = dgv1.Rows[e.RowIndex].Cells[1].Value.ToString();
-            txtPhone.Text = dgv1.Rows[e.RowIndex].Cells[2].Value.ToString();
-            txtAdr.Text = dgv1.Rows[e.RowIndex].Cells[3].Value.ToString();
+            txtId.Text = dgv1.Rows[e.RowIndex].Cells[0].Value.ToString();
+            txtCarId.Text = dgv1.Rows[e.RowIndex].Cells[1].Value.ToString();
+            txtCusId.Text = dgv1.Rows[e.RowIndex].Cells[2].Value.ToString();
+            txtPhone.Text = dgv1.Rows[e.RowIndex].Cells[3].Value.ToString();
+            txtCusId.Text = dgv1.Rows[e.RowIndex].Cells[4].Value.ToString();
+            txtCusId.Text = dgv1.Rows[e.RowIndex].Cells[5].Value.ToString();
+
         }
 
         private void btnUdt_Click(object sender, EventArgs e)
         {
-            txtSup.Enabled = true;
+            txtId.Enabled = true;
             txtPhone.Enabled = true;
-            txtAdr.Enabled = true;
-            btnSave.Enabled = true;
-            txtSup.Focus();
+            txtCusId.Enabled = true;
+            txtId.Focus();
             //if (!dm.UpdateRowSu(dgv1.Rows[dgv1.CurrentCell.RowIndex].Cells[0].Value.ToString(), txtSup.Text, txtPhone.Text, txtAdr.Text))
             //{
             //    MessageBox.Show("Failed");
             //}
 
             ResetForm();
-            LoadSupplierData();
+            LoadCarRent();
         }
 
         private void txtPrint_Click(object sender, EventArgs e)

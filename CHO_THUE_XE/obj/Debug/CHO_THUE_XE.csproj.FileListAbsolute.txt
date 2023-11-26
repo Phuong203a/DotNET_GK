@@ -102,7 +102,6 @@ D:\GK_DOT_NET_THUXE\CHO_THUE_XE\obj\Debug\CHO_THUE_XE.FormHome.resources
 D:\GK_DOT_NET_THUXE\CHO_THUE_XE\obj\Debug\CHO_THUE_XE.FormLogin.resources
 D:\GK_DOT_NET_THUXE\CHO_THUE_XE\obj\Debug\CHO_THUE_XE.FormPurchase.resources
 D:\GK_DOT_NET_THUXE\CHO_THUE_XE\obj\Debug\CHO_THUE_XE.FormStaff.resources
-D:\GK_DOT_NET_THUXE\CHO_THUE_XE\obj\Debug\CHO_THUE_XE.FormSupplier.resources
 D:\GK_DOT_NET_THUXE\CHO_THUE_XE\obj\Debug\CHO_THUE_XE.ListItem.resources
 D:\GK_DOT_NET_THUXE\CHO_THUE_XE\obj\Debug\CHO_THUE_XE.Properties.Resources.resources
 D:\GK_DOT_NET_THUXE\CHO_THUE_XE\obj\Debug\CHO_THUE_XE.schedule.resources
@@ -158,3 +157,4 @@ D:\GK_DOT_NET_THUXE\CHO_THUE_XE\bin\Debug\System.Runtime.CompilerServices.Unsafe
 D:\GK_DOT_NET_THUXE\CHO_THUE_XE\obj\Debug\CHO_THUE_XE.exe.manifest
 D:\GK_DOT_NET_THUXE\CHO_THUE_XE\obj\Debug\CHO_THUE_XE.application
 D:\GK_DOT_NET_THUXE\CHO_THUE_XE\obj\Debug\CHO_THUE_XE.csproj.CopyComplete
+D:\GK_DOT_NET_THUXE\CHO_THUE_XE\obj\Debug\CHO_THUE_XE.FormCarRent.resources

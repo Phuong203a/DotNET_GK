@@ -47,9 +47,10 @@ namespace CHO_THUE_XE
                 int index = dgv1.Rows.Add();
                 dgv1.Rows[index].Cells[0].Value = row["Id"];
                 dgv1.Rows[index].Cells[1].Value = row["Name"];
-                dgv1.Rows[index].Cells[2].Value = row["Brand"];
-                dgv1.Rows[index].Cells[3].Value = row["Type"];
-                dgv1.Rows[index].Cells[4].Value = row["Model"];
+                dgv1.Rows[index].Cells[2].Value = row["Price"];
+                dgv1.Rows[index].Cells[3].Value = row["Brand"];
+                dgv1.Rows[index].Cells[4].Value = row["Type"];
+                dgv1.Rows[index].Cells[5].Value = row["Model"];
             }
         }
 
@@ -65,7 +66,7 @@ namespace CHO_THUE_XE
             byte[] arr;
             ImageConverter convert = new ImageConverter();
             arr = (byte[])convert.ConvertTo(img, typeof(byte[]));
-            if (!dm.AddNewRowDv(Int32.Parse(txtId.Text), txtName.Text, txtBrand.Text, txtType.Text, txtModel.Text, arr))
+            if (!dm.AddNewRowCar(Int32.Parse(txtId.Text), txtName.Text, Int32.Parse(txtPrice.Text), txtBrand.Text, txtType.Text, txtModel.Text, arr))
             {
                 MessageBox.Show("Failed");
             }
@@ -129,9 +130,10 @@ namespace CHO_THUE_XE
         {
             txtId.Text = dgv1.Rows[e.RowIndex].Cells[0].Value.ToString();
             txtName.Text = dgv1.Rows[e.RowIndex].Cells[1].Value.ToString();
-            txtBrand.Text = dgv1.Rows[e.RowIndex].Cells[2].Value.ToString();
-            txtType.Text = dgv1.Rows[e.RowIndex].Cells[3].Value.ToString();
-            txtModel.Text = dgv1.Rows[e.RowIndex].Cells[4].Value.ToString();
+            txtPrice.Text = dgv1.Rows[e.RowIndex].Cells[2].Value.ToString();
+            txtBrand.Text = dgv1.Rows[e.RowIndex].Cells[3].Value.ToString();
+            txtType.Text = dgv1.Rows[e.RowIndex].Cells[4].Value.ToString();
+            txtModel.Text = dgv1.Rows[e.RowIndex].Cells[5].Value.ToString();
 
             Byte[] data = new Byte[0];
             data = dm.loadImgDv(Int32.Parse( dgv1.Rows[e.RowIndex].Cells[0].Value.ToString()));
@@ -153,7 +155,7 @@ namespace CHO_THUE_XE
             byte[] arr;
             ImageConverter convert = new ImageConverter();
             arr = (byte[])convert.ConvertTo(img, typeof(byte[]));
-            if (!dm.UpdateRowDv(Int32.Parse(dgv1.Rows[dgv1.CurrentCell.RowIndex].Cells[0].Value.ToString()), txtName.Text,
+            if (!dm.UpdateRowCar(Int32.Parse(dgv1.Rows[dgv1.CurrentCell.RowIndex].Cells[0].Value.ToString()), txtName.Text, Int32.Parse(txtPrice.Text),
                 txtBrand.Text, txtType.Text, txtModel.Text, arr))
             {
                 MessageBox.Show("Failed");

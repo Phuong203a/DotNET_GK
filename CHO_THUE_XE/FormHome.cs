@@ -50,7 +50,7 @@ namespace CHO_THUE_XE
         private void btnSupplier_Click(object sender, EventArgs e)
         {
             this.Hide();
-            FormSupplier fs = new FormSupplier();
+            FormCarRent fs = new FormCarRent();
             fs.ShowDialog();
         }
 
@@ -137,7 +137,7 @@ namespace CHO_THUE_XE
         private void button1_Click(object sender, EventArgs e)
         {
             this.Hide();
-            FormSupplier ft = new FormSupplier();
+            FormCarRent ft = new FormCarRent();
             ft.ShowDialog();
         }
 

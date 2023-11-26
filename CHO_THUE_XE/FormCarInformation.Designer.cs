@@ -34,6 +34,8 @@
             this.btnUdt = new System.Windows.Forms.Button();
             this.btnDel = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtPrice = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtName = new System.Windows.Forms.TextBox();
             this.txtModel = new System.Windows.Forms.TextBox();
@@ -54,6 +56,7 @@
             this.btnSearch = new System.Windows.Forms.Button();
             this.MaXe = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TenXe = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.GiaXe = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SoLuongTon = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.GiaThue = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MoTaSP = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -70,7 +73,7 @@
             this.btnExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExit.ForeColor = System.Drawing.Color.Black;
             this.btnExit.Location = new System.Drawing.Point(1163, 593);
-            this.btnExit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnExit.Margin = new System.Windows.Forms.Padding(4);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(165, 47);
             this.btnExit.TabIndex = 13;
@@ -84,7 +87,7 @@
             this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.ForeColor = System.Drawing.Color.Black;
             this.btnSave.Location = new System.Drawing.Point(149, 593);
-            this.btnSave.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(4);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(159, 47);
             this.btnSave.TabIndex = 12;
@@ -98,7 +101,7 @@
             this.btnUdt.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUdt.ForeColor = System.Drawing.Color.Black;
             this.btnUdt.Location = new System.Drawing.Point(669, 593);
-            this.btnUdt.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnUdt.Margin = new System.Windows.Forms.Padding(4);
             this.btnUdt.Name = "btnUdt";
             this.btnUdt.Size = new System.Drawing.Size(156, 47);
             this.btnUdt.TabIndex = 11;
@@ -112,7 +115,7 @@
             this.btnDel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDel.ForeColor = System.Drawing.Color.Black;
             this.btnDel.Location = new System.Drawing.Point(411, 593);
-            this.btnDel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnDel.Margin = new System.Windows.Forms.Padding(4);
             this.btnDel.Name = "btnDel";
             this.btnDel.Size = new System.Drawing.Size(152, 47);
             this.btnDel.TabIndex = 10;
@@ -123,6 +126,8 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.txtPrice);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.txtName);
             this.groupBox1.Controls.Add(this.txtModel);
@@ -137,13 +142,34 @@
             this.groupBox1.Controls.Add(this.txtId);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(0, 230);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox1.Size = new System.Drawing.Size(1504, 338);
             this.groupBox1.TabIndex = 9;
             this.groupBox1.TabStop = false;
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.Black;
+            this.label3.Location = new System.Drawing.Point(677, 68);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(78, 26);
+            this.label3.TabIndex = 22;
+            this.label3.Text = "Giá xe";
+            // 
+            // txtPrice
+            // 
+            this.txtPrice.Location = new System.Drawing.Point(945, 70);
+            this.txtPrice.Margin = new System.Windows.Forms.Padding(4);
+            this.txtPrice.Multiline = true;
+            this.txtPrice.Name = "txtPrice";
+            this.txtPrice.Size = new System.Drawing.Size(319, 25);
+            this.txtPrice.TabIndex = 21;
             // 
             // label1
             // 
@@ -160,7 +186,7 @@
             // txtName
             // 
             this.txtName.Location = new System.Drawing.Point(945, 113);
-            this.txtName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtName.Margin = new System.Windows.Forms.Padding(4);
             this.txtName.Multiline = true;
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(319, 25);
@@ -169,7 +195,7 @@
             // txtModel
             // 
             this.txtModel.Location = new System.Drawing.Point(945, 283);
-            this.txtModel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtModel.Margin = new System.Windows.Forms.Padding(4);
             this.txtModel.Name = "txtModel";
             this.txtModel.Size = new System.Drawing.Size(319, 24);
             this.txtModel.TabIndex = 18;
@@ -180,7 +206,7 @@
             this.btnUpload.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.btnUpload.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUpload.Location = new System.Drawing.Point(381, 150);
-            this.btnUpload.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnUpload.Margin = new System.Windows.Forms.Padding(4);
             this.btnUpload.Name = "btnUpload";
             this.btnUpload.Size = new System.Drawing.Size(101, 44);
             this.btnUpload.TabIndex = 8;
@@ -194,7 +220,7 @@
             this.pbAva.Image = ((System.Drawing.Image)(resources.GetObject("pbAva.Image")));
             this.pbAva.InitialImage = null;
             this.pbAva.Location = new System.Drawing.Point(96, 25);
-            this.pbAva.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pbAva.Margin = new System.Windows.Forms.Padding(4);
             this.pbAva.Name = "pbAva";
             this.pbAva.Size = new System.Drawing.Size(260, 284);
             this.pbAva.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -230,7 +256,7 @@
             // txtType
             // 
             this.txtType.Location = new System.Drawing.Point(945, 223);
-            this.txtType.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtType.Margin = new System.Windows.Forms.Padding(4);
             this.txtType.Multiline = true;
             this.txtType.Name = "txtType";
             this.txtType.Size = new System.Drawing.Size(319, 25);
@@ -253,7 +279,7 @@
             // txtBrand
             // 
             this.txtBrand.Location = new System.Drawing.Point(945, 169);
-            this.txtBrand.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtBrand.Margin = new System.Windows.Forms.Padding(4);
             this.txtBrand.Multiline = true;
             this.txtBrand.Name = "txtBrand";
             this.txtBrand.Size = new System.Drawing.Size(319, 25);
@@ -265,7 +291,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(677, 60);
+            this.label2.Location = new System.Drawing.Point(677, 23);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(76, 26);
@@ -275,8 +301,8 @@
             // 
             // txtId
             // 
-            this.txtId.Location = new System.Drawing.Point(945, 62);
-            this.txtId.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtId.Location = new System.Drawing.Point(945, 25);
+            this.txtId.Margin = new System.Windows.Forms.Padding(4);
             this.txtId.Multiline = true;
             this.txtId.Name = "txtId";
             this.txtId.Size = new System.Drawing.Size(319, 25);
@@ -290,12 +316,13 @@
             this.dgv1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.MaXe,
             this.TenXe,
+            this.GiaXe,
             this.SoLuongTon,
             this.GiaThue,
             this.MoTaSP});
             this.dgv1.GridColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.dgv1.Location = new System.Drawing.Point(0, 670);
-            this.dgv1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgv1.Margin = new System.Windows.Forms.Padding(4);
             this.dgv1.Name = "dgv1";
             this.dgv1.RowHeadersWidth = 51;
             this.dgv1.Size = new System.Drawing.Size(1500, 240);
@@ -308,7 +335,7 @@
             this.btnLoad.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.btnLoad.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLoad.Location = new System.Drawing.Point(656, 943);
-            this.btnLoad.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnLoad.Margin = new System.Windows.Forms.Padding(4);
             this.btnLoad.Name = "btnLoad";
             this.btnLoad.Size = new System.Drawing.Size(131, 47);
             this.btnLoad.TabIndex = 21;
@@ -321,7 +348,7 @@
             this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.Controls.Add(this.pictureBox2);
             this.panel1.Location = new System.Drawing.Point(0, -10);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1504, 55);
             this.panel1.TabIndex = 22;
@@ -330,7 +357,7 @@
             // 
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
             this.pictureBox2.Location = new System.Drawing.Point(1459, 9);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(41, 38);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -378,6 +405,13 @@
             this.TenXe.Name = "TenXe";
             this.TenXe.Width = 125;
             // 
+            // GiaXe
+            // 
+            this.GiaXe.HeaderText = "Giá Xe";
+            this.GiaXe.MinimumWidth = 6;
+            this.GiaXe.Name = "GiaXe";
+            this.GiaXe.Width = 125;
+            // 
             // SoLuongTon
             // 
             this.SoLuongTon.HeaderText = "Hãng xe";
@@ -417,7 +451,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.dgv1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormCarInformation";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormCarInformation";
@@ -458,8 +492,11 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtModel;
         private System.Windows.Forms.Button btnSearch;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox txtPrice;
         private System.Windows.Forms.DataGridViewTextBoxColumn MaXe;
         private System.Windows.Forms.DataGridViewTextBoxColumn TenXe;
+        private System.Windows.Forms.DataGridViewTextBoxColumn GiaXe;
         private System.Windows.Forms.DataGridViewTextBoxColumn SoLuongTon;
         private System.Windows.Forms.DataGridViewTextBoxColumn GiaThue;
         private System.Windows.Forms.DataGridViewTextBoxColumn MoTaSP;

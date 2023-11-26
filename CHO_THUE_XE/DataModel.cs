@@ -311,7 +311,7 @@ namespace CHO_THUE_XE
         {
             List<Dictionary<string, string>> rows = new List<Dictionary<string, string>>();
             Dictionary<string, string> column;
-            string sqlQuery = "SELECT Id, Name, Brand, Type, Model FROM Car where 1=1 ";
+            string sqlQuery = "SELECT Id, Name,Price, Brand, Type, Model FROM Car where 1=1 ";
             SqlCommand command;
             if (brandFilter != null && !brandFilter.Equals(""))
             {
@@ -358,6 +358,7 @@ namespace CHO_THUE_XE
                     column["Brand"] = reader["Brand"].ToString();
                     column["Type"] = reader["Type"].ToString();
                     column["Model"] = reader["Model"].ToString();
+                    column["Price"] = reader["Price"].ToString();
                     rows.Add(column); //Place the dictionary into the list
                 }
                 reader.Close();
@@ -398,19 +399,46 @@ namespace CHO_THUE_XE
             }
         }
 
-        public bool AddNewRowDv(int id, string name, string brand, string type, string model, byte[] img)
+        public int getPriceCar(int id)
         {
-            string addCmd = "INSERT INTO Car (Id, Name, Brand, Type,Model, Picture) values (@val1, @val2, @val3, @val4, @val5, @val6)";
+            string sqlQuery = "Select Price from Car where Id = @val1";
+            // int result = command.ExecuteNonQuery();
+            using (SqlCommand comm = new SqlCommand())
+            {
+                comm.Connection = conn;
+                comm.CommandText = sqlQuery;
+                comm.Parameters.AddWithValue("@val1", id);
+                try
+                {
+                    object price = comm.ExecuteScalar();
+                    if (price != null)
+                    {
+                        return int.Parse(price.ToString());
+                    }
+                    return - 1;
+                }
+                catch (SqlException e)
+                {
+                    Console.WriteLine(e.ToString());
+                    return -1;
+                }
+            }
+        }
+
+        public bool AddNewRowCar(int id, string name, int price, string brand, string type, string model, byte[] img)
+        {
+            string addCmd = "INSERT INTO Car (Id, Name, Price, Brand, Type,Model, Picture) values (@val1, @val2, @val3, @val4, @val5, @val6, @val7)";
             using (SqlCommand comm = new SqlCommand())
             {
                 comm.Connection = conn;
                 comm.CommandText = addCmd;
                 comm.Parameters.AddWithValue("@val1", id);
                 comm.Parameters.AddWithValue("@val2", name);
-                comm.Parameters.AddWithValue("@val3", brand);
-                comm.Parameters.AddWithValue("@val4", type);
-                comm.Parameters.AddWithValue("@val5", model);
-                comm.Parameters.AddWithValue("@val6", img);
+                comm.Parameters.AddWithValue("@val3", price);
+                comm.Parameters.AddWithValue("@val4", brand);
+                comm.Parameters.AddWithValue("@val5", type);
+                comm.Parameters.AddWithValue("@val6", model);
+                comm.Parameters.AddWithValue("@val7", img);
                 try
                 {
                     comm.ExecuteNonQuery();
@@ -446,10 +474,10 @@ namespace CHO_THUE_XE
             }
         }
 
-        public bool UpdateRowDv(int did, string name, string brand, string type, string model, byte[] img)
+        public bool UpdateRowCar(int did, string name, int price, string brand, string type, string model, byte[] img)
         {
             string addCmd = "update Car set Name = @val2,Brand = @val3, Type =  @val4, " +
-                "Model = @val5, Picture = @val6 where Id = @val1";
+                "Model = @val5, Picture = @val6, Price = @val7 where Id = @val1";
             using (SqlCommand comm = new SqlCommand())
             {
                 comm.Connection = conn;
@@ -460,7 +488,7 @@ namespace CHO_THUE_XE
                 comm.Parameters.AddWithValue("@val4", type);
                 comm.Parameters.AddWithValue("@val5", model);
                 comm.Parameters.AddWithValue("@val6", img);
-
+                comm.Parameters.AddWithValue("@val7", price);
                 try
                 {
                     comm.ExecuteNonQuery();
@@ -799,6 +827,91 @@ namespace CHO_THUE_XE
             return rows;
 
         }
+
+        public List<Dictionary<string, string>> FetchAllRowCarRent()
+        {
+            List<Dictionary<string, string>> rows = new List<Dictionary<string, string>>();
+            Dictionary<string, string> column;
+            string sqlQuery = "SELECT * FROM CarRent";
+
+            SqlCommand command = new SqlCommand(sqlQuery, this.conn);
+
+            try
+            {
+                SqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {    //Every new row will create a new dictionary that holds the columns
+                    column = new Dictionary<string, string>();
+
+                    column["Id"] = reader["Id"].ToString();
+                    column["MaKH"] = reader["MaKH"].ToString();
+                    column["CarId"] = reader["CarId"].ToString();
+                    column["Total"] = reader["Total"].ToString();
+                    column["ChucNang"] = reader["ChucNang"].ToString();
+                    column["NhienLieu"] = reader["NhienLieu"].ToString();
+                    rows.Add(column); //Place the dictionary into the list
+                }
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                //If an exception occurs, write it to the console
+                Console.WriteLine(ex.ToString());
+            }
+
+            return rows;
+
+        }
+
+        public bool AddNewCarRent(int id, int cusId, int idCar, int total,string chucNang, int nhienLieu)
+        {
+            string addCmd = "INSERT INTO CarRent (Id, MaKH ,CarId, Total,ChucNang,NhienLieu) values (@val1, @val2, @val3, @val4, @val5, @val6)";
+            using (SqlCommand comm = new SqlCommand())
+            {
+                comm.Connection = conn;
+                comm.CommandText = addCmd;
+                comm.Parameters.AddWithValue("@val1", id);
+                comm.Parameters.AddWithValue("@val2", cusId);
+                comm.Parameters.AddWithValue("@val3", idCar);
+                comm.Parameters.AddWithValue("@val4", total);
+                comm.Parameters.AddWithValue("@val5", chucNang);
+                comm.Parameters.AddWithValue("@val6", nhienLieu);
+                try
+                {
+                    comm.ExecuteNonQuery();
+                    return true;
+                }
+                catch (SqlException e)
+                {
+                    Console.WriteLine(e.ToString());
+                    return false;
+                }
+            }
+        }
+
+        public bool RemoveRowCarRent(int id)
+        {
+            string addCmd = "DELETE FROM CarRent where ID = @val1";
+            using (SqlCommand comm = new SqlCommand())
+            {
+                comm.Connection = conn;
+                comm.CommandText = addCmd;
+                comm.Parameters.AddWithValue("@val1", id);
+
+                try
+                {
+                    comm.ExecuteNonQuery();
+                    return true;
+                }
+                catch (SqlException e)
+                {
+                    Console.WriteLine(e.ToString());
+                    return false;
+                }
+            }
+        }  
+       
 
     }
 }
