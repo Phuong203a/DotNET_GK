@@ -31,12 +31,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StyleCar));
             this.panel10 = new System.Windows.Forms.Panel();
             this.radioButton8 = new System.Windows.Forms.RadioButton();
-            this.radioButton7 = new System.Windows.Forms.RadioButton();
             this.radioButton6 = new System.Windows.Forms.RadioButton();
             this.radioButton5 = new System.Windows.Forms.RadioButton();
-            this.panel15 = new System.Windows.Forms.Panel();
-            this.label15 = new System.Windows.Forms.Label();
-            this.pictureBox14 = new System.Windows.Forms.PictureBox();
             this.panel16 = new System.Windows.Forms.Panel();
             this.label16 = new System.Windows.Forms.Label();
             this.pictureBox15 = new System.Windows.Forms.PictureBox();
@@ -71,7 +67,6 @@
             this.label14 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.radioButton4 = new System.Windows.Forms.RadioButton();
-            this.label20 = new System.Windows.Forms.Label();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.label21 = new System.Windows.Forms.Label();
             this.dgv1 = new System.Windows.Forms.DataGridView();
@@ -83,9 +78,9 @@
             this.SameMoney = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SumMoney = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
             this.panel10.SuspendLayout();
-            this.panel15.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox14)).BeginInit();
             this.panel16.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox15)).BeginInit();
             this.panel12.SuspendLayout();
@@ -100,10 +95,8 @@
             // 
             this.panel10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(201)))), ((int)(((byte)(225)))), ((int)(((byte)(251)))));
             this.panel10.Controls.Add(this.radioButton8);
-            this.panel10.Controls.Add(this.radioButton7);
             this.panel10.Controls.Add(this.radioButton6);
             this.panel10.Controls.Add(this.radioButton5);
-            this.panel10.Controls.Add(this.panel15);
             this.panel10.Controls.Add(this.panel16);
             this.panel10.Controls.Add(this.panel12);
             this.panel10.Controls.Add(this.panel11);
@@ -125,19 +118,6 @@
             this.radioButton8.Text = "Xe 3";
             this.radioButton8.UseVisualStyleBackColor = true;
             this.radioButton8.CheckedChanged += new System.EventHandler(this.radioButton8_CheckedChanged);
-            // 
-            // radioButton7
-            // 
-            this.radioButton7.AutoSize = true;
-            this.radioButton7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButton7.Location = new System.Drawing.Point(376, 413);
-            this.radioButton7.Name = "radioButton7";
-            this.radioButton7.Size = new System.Drawing.Size(64, 24);
-            this.radioButton7.TabIndex = 48;
-            this.radioButton7.TabStop = true;
-            this.radioButton7.Text = "Xe 4";
-            this.radioButton7.UseVisualStyleBackColor = true;
-            this.radioButton7.CheckedChanged += new System.EventHandler(this.radioButton7_CheckedChanged);
             // 
             // radioButton6
             // 
@@ -165,36 +145,6 @@
             this.radioButton5.UseVisualStyleBackColor = true;
             this.radioButton5.CheckedChanged += new System.EventHandler(this.radioButton5_CheckedChanged);
             // 
-            // panel15
-            // 
-            this.panel15.BackColor = System.Drawing.Color.White;
-            this.panel15.Controls.Add(this.label15);
-            this.panel15.Controls.Add(this.pictureBox14);
-            this.panel15.Location = new System.Drawing.Point(412, 253);
-            this.panel15.Name = "panel15";
-            this.panel15.Size = new System.Drawing.Size(288, 175);
-            this.panel15.TabIndex = 5;
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(80, 141);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(120, 25);
-            this.label15.TabIndex = 1;
-            this.label15.Text = "4 chỗ mini";
-            // 
-            // pictureBox14
-            // 
-            this.pictureBox14.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox14.Image")));
-            this.pictureBox14.Location = new System.Drawing.Point(3, 0);
-            this.pictureBox14.Name = "pictureBox14";
-            this.pictureBox14.Size = new System.Drawing.Size(285, 127);
-            this.pictureBox14.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox14.TabIndex = 0;
-            this.pictureBox14.TabStop = false;
-            // 
             // panel16
             // 
             this.panel16.BackColor = System.Drawing.Color.White;
@@ -211,9 +161,9 @@
             this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label16.Location = new System.Drawing.Point(80, 141);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(120, 25);
+            this.label16.Size = new System.Drawing.Size(113, 25);
             this.label16.TabIndex = 1;
-            this.label16.Text = "4 chỗ mini";
+            this.label16.Text = "4 chỗ xyz";
             // 
             // pictureBox15
             // 
@@ -242,9 +192,9 @@
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.Location = new System.Drawing.Point(80, 141);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(120, 25);
+            this.label12.Size = new System.Drawing.Size(75, 25);
             this.label12.TabIndex = 1;
-            this.label12.Text = "4 chỗ mini";
+            this.label12.Text = "4 mec";
             // 
             // pictureBox11
             // 
@@ -272,9 +222,9 @@
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.Location = new System.Drawing.Point(80, 141);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(120, 25);
+            this.label10.Size = new System.Drawing.Size(165, 25);
             this.label10.TabIndex = 1;
-            this.label10.Text = "4 chỗ mini";
+            this.label10.Text = "4 chỗ mini abc";
             // 
             // pictureBox1
             // 
@@ -289,7 +239,7 @@
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("Cooper Black", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(515, 537);
+            this.button2.Location = new System.Drawing.Point(587, 537);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(126, 40);
             this.button2.TabIndex = 3;
@@ -576,16 +526,6 @@
             this.radioButton4.UseVisualStyleBackColor = true;
             this.radioButton4.CheckedChanged += new System.EventHandler(this.radioButton4_CheckedChanged);
             // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold);
-            this.label20.Location = new System.Drawing.Point(814, 457);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(111, 25);
-            this.label20.TabIndex = 44;
-            this.label20.Text = "Tổng tiền";
-            // 
             // textBox3
             // 
             this.textBox3.Location = new System.Drawing.Point(944, 457);
@@ -660,7 +600,7 @@
             // button3
             // 
             this.button3.Font = new System.Drawing.Font("Cooper Black", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(944, 537);
+            this.button3.Location = new System.Drawing.Point(1032, 537);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(126, 40);
             this.button3.TabIndex = 46;
@@ -668,13 +608,35 @@
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
+            // button4
+            // 
+            this.button4.Font = new System.Drawing.Font("Cooper Black", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button4.Location = new System.Drawing.Point(1398, 537);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(126, 40);
+            this.button4.TabIndex = 47;
+            this.button4.Text = "Add";
+            this.button4.UseVisualStyleBackColor = true;
+            // 
+            // button5
+            // 
+            this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button5.Location = new System.Drawing.Point(813, 457);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(109, 32);
+            this.button5.TabIndex = 48;
+            this.button5.Text = "Tổng tiền";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
             // StyleCar
             // 
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.ClientSize = new System.Drawing.Size(1738, 905);
+            this.Controls.Add(this.button5);
+            this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.dgv1);
-            this.Controls.Add(this.label20);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.label21);
             this.Controls.Add(this.radioButton4);
@@ -704,11 +666,9 @@
             this.Controls.Add(this.pictureBox16);
             this.Controls.Add(this.panel10);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Name = "StyleCar";
             this.panel10.ResumeLayout(false);
             this.panel10.PerformLayout();
-            this.panel15.ResumeLayout(false);
-            this.panel15.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox14)).EndInit();
             this.panel16.ResumeLayout(false);
             this.panel16.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox15)).EndInit();
@@ -758,9 +718,6 @@
         private System.Windows.Forms.Panel panel11;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Panel panel15;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.PictureBox pictureBox14;
         private System.Windows.Forms.Panel panel16;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.PictureBox pictureBox15;
@@ -792,7 +749,6 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.RadioButton radioButton4;
-        private System.Windows.Forms.Label label20;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.DataGridView dgv1;
@@ -804,9 +760,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn SameMoney;
         private System.Windows.Forms.DataGridViewTextBoxColumn SumMoney;
         private System.Windows.Forms.RadioButton radioButton8;
-        private System.Windows.Forms.RadioButton radioButton7;
         private System.Windows.Forms.RadioButton radioButton6;
         private System.Windows.Forms.RadioButton radioButton5;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button5;
     }
 }

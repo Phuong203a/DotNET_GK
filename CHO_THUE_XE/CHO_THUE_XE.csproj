@@ -192,7 +192,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataModel.cs" />
-    <Compile Include="datamodel1.cs" />
     <Compile Include="FormForgotPassword.cs">
       <SubType>Form</SubType>
     </Compile>

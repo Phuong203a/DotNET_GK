@@ -273,6 +273,8 @@
             this.dgv1.Size = new System.Drawing.Size(1128, 212);
             this.dgv1.TabIndex = 23;
             this.dgv1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv1_CellClick);
+            this.dgv1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv1_CellContentClick);
+            // 
             // MaKH
             // 
             this.MaKH.HeaderText = "MaKH";

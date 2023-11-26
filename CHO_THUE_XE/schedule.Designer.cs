@@ -30,10 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(schedule));
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.txtPrint = new System.Windows.Forms.Button();
             this.btnLoad = new System.Windows.Forms.Button();
-            this.btnExit = new System.Windows.Forms.Button();
-            this.btnSave = new System.Windows.Forms.Button();
             this.btnUdt = new System.Windows.Forms.Button();
             this.btnDel = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -47,22 +44,20 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.label5 = new System.Windows.Forms.Label();
             this.txtAdr = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.txtPhone = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtSup = new System.Windows.Forms.TextBox();
             this.dgv1 = new System.Windows.Forms.DataGridView();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Maxe = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MaKH = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Sdt = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Maxe = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TimeThue = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TimeTra = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SumTien = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.status = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.GhiChu = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnAdd = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
@@ -82,18 +77,6 @@
             this.pictureBox3.TabStop = false;
             this.pictureBox3.Click += new System.EventHandler(this.pictureBox3_Click_1);
             // 
-            // txtPrint
-            // 
-            this.txtPrint.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.txtPrint.Font = new System.Drawing.Font("Cooper Black", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPrint.Location = new System.Drawing.Point(1030, 443);
-            this.txtPrint.Name = "txtPrint";
-            this.txtPrint.Size = new System.Drawing.Size(107, 52);
-            this.txtPrint.TabIndex = 49;
-            this.txtPrint.Text = "Print";
-            this.txtPrint.UseVisualStyleBackColor = false;
-            this.txtPrint.Click += new System.EventHandler(this.txtPrint_Click);
-            // 
             // btnLoad
             // 
             this.btnLoad.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
@@ -106,35 +89,11 @@
             this.btnLoad.UseVisualStyleBackColor = false;
             this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
             // 
-            // btnExit
-            // 
-            this.btnExit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.btnExit.Font = new System.Drawing.Font("Cooper Black", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExit.Location = new System.Drawing.Point(864, 443);
-            this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(107, 52);
-            this.btnExit.TabIndex = 47;
-            this.btnExit.Text = "Exit";
-            this.btnExit.UseVisualStyleBackColor = false;
-            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
-            // 
-            // btnSave
-            // 
-            this.btnSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.btnSave.Font = new System.Drawing.Font("Cooper Black", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSave.Location = new System.Drawing.Point(694, 443);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(107, 52);
-            this.btnSave.TabIndex = 46;
-            this.btnSave.Text = "Save";
-            this.btnSave.UseVisualStyleBackColor = false;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
             // btnUdt
             // 
             this.btnUdt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.btnUdt.Font = new System.Drawing.Font("Cooper Black", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUdt.Location = new System.Drawing.Point(533, 443);
+            this.btnUdt.Location = new System.Drawing.Point(934, 412);
             this.btnUdt.Name = "btnUdt";
             this.btnUdt.Size = new System.Drawing.Size(107, 52);
             this.btnUdt.TabIndex = 45;
@@ -146,7 +105,7 @@
             // 
             this.btnDel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.btnDel.Font = new System.Drawing.Font("Cooper Black", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDel.Location = new System.Drawing.Point(362, 443);
+            this.btnDel.Location = new System.Drawing.Point(665, 412);
             this.btnDel.Name = "btnDel";
             this.btnDel.Size = new System.Drawing.Size(107, 52);
             this.btnDel.TabIndex = 44;
@@ -166,10 +125,8 @@
             this.groupBox1.Controls.Add(this.textBox1);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.dateTimePicker1);
-            this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.txtAdr);
             this.groupBox1.Controls.Add(this.label9);
-            this.groupBox1.Controls.Add(this.textBox2);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.txtPhone);
             this.groupBox1.Controls.Add(this.label2);
@@ -199,6 +156,7 @@
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(227, 20);
             this.textBox5.TabIndex = 53;
+            this.textBox5.TextChanged += new System.EventHandler(this.textBox5_TextChanged);
             // 
             // label7
             // 
@@ -218,6 +176,7 @@
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(227, 21);
             this.textBox4.TabIndex = 49;
+            this.textBox4.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
             // 
             // label4
             // 
@@ -235,6 +194,7 @@
             this.dateTimePicker3.Name = "dateTimePicker3";
             this.dateTimePicker3.Size = new System.Drawing.Size(226, 21);
             this.dateTimePicker3.TabIndex = 42;
+            this.dateTimePicker3.ValueChanged += new System.EventHandler(this.dateTimePicker3_ValueChanged);
             // 
             // label1
             // 
@@ -254,6 +214,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(227, 21);
             this.textBox1.TabIndex = 45;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // label3
             // 
@@ -271,16 +232,7 @@
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(226, 21);
             this.dateTimePicker1.TabIndex = 41;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(943, 203);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(88, 22);
-            this.label5.TabIndex = 44;
-            this.label5.Text = "Tổng tiền";
+            this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
             // txtAdr
             // 
@@ -290,6 +242,7 @@
             this.txtAdr.Name = "txtAdr";
             this.txtAdr.Size = new System.Drawing.Size(227, 20);
             this.txtAdr.TabIndex = 18;
+            this.txtAdr.TextChanged += new System.EventHandler(this.txtAdr_TextChanged);
             // 
             // label9
             // 
@@ -300,15 +253,6 @@
             this.label9.Size = new System.Drawing.Size(72, 24);
             this.label9.TabIndex = 17;
             this.label9.Text = "Mã KH";
-            // 
-            // textBox2
-            // 
-            this.textBox2.BackColor = System.Drawing.Color.White;
-            this.textBox2.Location = new System.Drawing.Point(1033, 204);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(227, 20);
-            this.textBox2.TabIndex = 43;
             // 
             // label8
             // 
@@ -328,6 +272,7 @@
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.Size = new System.Drawing.Size(227, 21);
             this.txtPhone.TabIndex = 14;
+            this.txtPhone.TextChanged += new System.EventHandler(this.txtPhone_TextChanged);
             // 
             // label2
             // 
@@ -355,17 +300,17 @@
             this.dgv1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ID,
-            this.Maxe,
             this.MaKH,
             this.Sdt,
+            this.Maxe,
             this.TimeThue,
             this.TimeTra,
-            this.SumTien,
+            this.status,
             this.GhiChu});
             this.dgv1.GridColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.dgv1.Location = new System.Drawing.Point(-1, 533);
+            this.dgv1.Location = new System.Drawing.Point(-1, 481);
             this.dgv1.Name = "dgv1";
-            this.dgv1.Size = new System.Drawing.Size(1350, 253);
+            this.dgv1.Size = new System.Drawing.Size(1357, 296);
             this.dgv1.TabIndex = 42;
             this.dgv1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv1_CellContentClick);
             // 
@@ -374,12 +319,6 @@
             this.ID.HeaderText = "ID";
             this.ID.Name = "ID";
             this.ID.Width = 125;
-            // 
-            // Maxe
-            // 
-            this.Maxe.HeaderText = "Mã xe";
-            this.Maxe.Name = "Maxe";
-            this.Maxe.Width = 125;
             // 
             // MaKH
             // 
@@ -394,6 +333,12 @@
             this.Sdt.Name = "Sdt";
             this.Sdt.Width = 370;
             // 
+            // Maxe
+            // 
+            this.Maxe.HeaderText = "Mã xe";
+            this.Maxe.Name = "Maxe";
+            this.Maxe.Width = 125;
+            // 
             // TimeThue
             // 
             this.TimeThue.HeaderText = "Ngày thuê";
@@ -404,10 +349,10 @@
             this.TimeTra.HeaderText = "Ngày trả";
             this.TimeTra.Name = "TimeTra";
             // 
-            // SumTien
+            // status
             // 
-            this.SumTien.HeaderText = "Tổng tiền";
-            this.SumTien.Name = "SumTien";
+            this.status.HeaderText = "Status";
+            this.status.Name = "status";
             // 
             // GhiChu
             // 
@@ -418,7 +363,7 @@
             // 
             this.btnAdd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.btnAdd.Font = new System.Drawing.Font("Cooper Black", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdd.Location = new System.Drawing.Point(196, 443);
+            this.btnAdd.Location = new System.Drawing.Point(387, 412);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(107, 52);
             this.btnAdd.TabIndex = 41;
@@ -445,10 +390,7 @@
             this.ClientSize = new System.Drawing.Size(1352, 886);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.pictureBox3);
-            this.Controls.Add(this.txtPrint);
             this.Controls.Add(this.btnLoad);
-            this.Controls.Add(this.btnExit);
-            this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnUdt);
             this.Controls.Add(this.btnDel);
             this.Controls.Add(this.groupBox1);
@@ -469,10 +411,7 @@
         #endregion
 
         private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.Button txtPrint;
         private System.Windows.Forms.Button btnLoad;
-        private System.Windows.Forms.Button btnExit;
-        private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnUdt;
         private System.Windows.Forms.Button btnDel;
         private System.Windows.Forms.GroupBox groupBox1;
@@ -486,24 +425,22 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtAdr;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txtPhone;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtSup;
         private System.Windows.Forms.DataGridView dgv1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Maxe;
-        private System.Windows.Forms.DataGridViewTextBoxColumn MaKH;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Sdt;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TimeThue;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TimeTra;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SumTien;
-        private System.Windows.Forms.DataGridViewTextBoxColumn GhiChu;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MaKH;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Sdt;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Maxe;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TimeThue;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TimeTra;
+        private System.Windows.Forms.DataGridViewTextBoxColumn status;
+        private System.Windows.Forms.DataGridViewTextBoxColumn GhiChu;
     }
 }

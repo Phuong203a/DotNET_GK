@@ -36,10 +36,14 @@ namespace CHO_THUE_XE
             foreach (Dictionary<string, string> row in rows)
             {
                 int index = dgv1.Rows.Add();
-                dgv1.Rows[index].Cells[0].Value = row["MaNCC"];
-                dgv1.Rows[index].Cells[1].Value = row["TenNCC"];
-                dgv1.Rows[index].Cells[2].Value = row["SoDT"];
-                dgv1.Rows[index].Cells[3].Value = row["DiaChi"];
+                dgv1.Rows[index].Cells[0].Value = row["ID"];
+                dgv1.Rows[index].Cells[1].Value = row["MaKH"];
+                dgv1.Rows[index].Cells[2].Value = row["Sdt"];
+                dgv1.Rows[index].Cells[3].Value = row["IdXe"];
+                dgv1.Rows[index].Cells[4].Value = row["NgayThue"];
+                dgv1.Rows[index].Cells[5].Value = row["NgayTra"];
+                dgv1.Rows[index].Cells[4].Value = row["Status"];
+                dgv1.Rows[index].Cells[5].Value = row["GhiChu"];
             }
         }
 
@@ -49,17 +53,25 @@ namespace CHO_THUE_XE
             foreach (Dictionary<string, string> row in rows)
             {
                 int index = dgv1.Rows.Add();
-                dgv1.Rows[index].Cells[0].Value = row["MaNCC"];
-                dgv1.Rows[index].Cells[1].Value = row["TenNCC"];
-                dgv1.Rows[index].Cells[2].Value = row["SoDT"];
-                dgv1.Rows[index].Cells[3].Value = row["DiaChi"];
+                dgv1.Rows[index].Cells[0].Value = row["ID"];
+                dgv1.Rows[index].Cells[1].Value = row["MaKH"];
+                dgv1.Rows[index].Cells[2].Value = row["Sdt"];
+                dgv1.Rows[index].Cells[3].Value = row["IdXe"];
+                dgv1.Rows[index].Cells[4].Value = row["NgayThue"];
+                dgv1.Rows[index].Cells[5].Value = row["NgayTra"];
+                dgv1.Rows[index].Cells[4].Value = row["Status"];
+                dgv1.Rows[index].Cells[5].Value = row["GhiChu"];
             }
             ResetForm();
             LoadSupplierData();
             txtSup.Enabled = true;
             txtPhone.Enabled = true;
             txtAdr.Enabled = true;
-            btnSave.Enabled = true;
+            textBox4.Enabled = true;
+            dateTimePicker1.Enabled = true;
+            dateTimePicker3.Enabled = true;
+            textBox1.Enabled = true;
+            textBox5.Enabled = true;
         }
 
         private void pictureBox3_Click(object sender, EventArgs e)
@@ -81,21 +93,26 @@ namespace CHO_THUE_XE
             
         }
 
-        private void txtPrint_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
             txtSup.Enabled = true;
             txtPhone.Enabled = true;
             txtAdr.Enabled = true;
-            btnSave.Enabled = true;
+            textBox4.Enabled = true;
+            dateTimePicker1.Enabled = true;
+            dateTimePicker3.Enabled = true;
+            textBox1.Enabled = true;
+            textBox5.Enabled = true;
 
             txtSup.Text = String.Empty;
             txtPhone.Text = String.Empty;
             txtAdr.Text = String.Empty;
+            textBox4.Text = String.Empty;
+            dateTimePicker1.Text = String.Empty;
+            dateTimePicker3.Text= String.Empty;
+            textBox1.Text = String.Empty;
+            textBox5.Text = String.Empty;
         }
 
         private void txtSup_TextChanged(object sender, EventArgs e)
@@ -125,7 +142,7 @@ namespace CHO_THUE_XE
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (!dm.AddNewRowSu(txtSup.Text, txtPhone.Text, txtAdr.Text))
+            if (!dm.AddNewRowSu(txtSup.Text, txtPhone.Text, txtAdr.Text, textBox4.Text, dateTimePicker1.MaxDate, dateTimePicker3.MaxDate, textBox1.Text, textBox5.Text))
             {
                 MessageBox.Show("Failed");
             }
@@ -136,7 +153,11 @@ namespace CHO_THUE_XE
             txtSup.Enabled = false;
             txtPhone.Enabled = false;
             txtAdr.Enabled = false;
-            btnSave.Enabled = false;
+            textBox4.Enabled= false;
+            dateTimePicker1.Enabled=false;
+            dateTimePicker3.Enabled=false;
+            textBox1.Enabled=false;
+            textBox5.Enabled=false;
         }
 
         private void btnUdt_Click(object sender, EventArgs e)
@@ -144,9 +165,13 @@ namespace CHO_THUE_XE
             txtSup.Enabled = true;
             txtPhone.Enabled = true;
             txtAdr.Enabled = true;
-            btnSave.Enabled = true;
+            textBox4.Enabled = true;
+            dateTimePicker1.Enabled=true;
+            dateTimePicker3.Enabled=true;
+            textBox1.Enabled=true;
+            textBox5.Enabled=true;
             txtSup.Focus();
-            if (!dm.UpdateRowSu(dgv1.Rows[dgv1.CurrentCell.RowIndex].Cells[0].Value.ToString(), txtSup.Text, txtPhone.Text, txtAdr.Text))
+            if (!dm.UpdateRowSu(dgv1.Rows[dgv1.CurrentCell.RowIndex].Cells[0].Value.ToString(), txtSup.Text, txtPhone.Text, txtAdr.Text, textBox4.Text, dateTimePicker1.MaxDate, dateTimePicker3.MaxDate, textBox1.Text, textBox5.Text))
             {
                 MessageBox.Show("Failed");
             }
@@ -155,12 +180,39 @@ namespace CHO_THUE_XE
             LoadSupplierData();
         }
 
-        private void btnExit_Click(object sender, EventArgs e)
+        private void txtPhone_TextChanged(object sender, EventArgs e)
         {
-            txtSup.Enabled = false;
-            txtPhone.Enabled = false;
-            txtAdr.Enabled = false;
-            btnSave.Enabled = false;
+
+        }
+
+        private void textBox4_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtAdr_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dateTimePicker3_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox5_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

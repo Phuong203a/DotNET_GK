@@ -249,5 +249,10 @@ namespace CHO_THUE_XE
         {
 
         }
+
+        private void txtAdr_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

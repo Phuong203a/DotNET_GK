@@ -46,9 +46,9 @@ namespace CHO_THUE_XE
 
         private void textBox3_TextChanged(object sender, EventArgs e)
         {
-            MessageBox.Show("Đã thêm");
-            totalPrice = carPrice + materialPrice + functionPrice;
+            dm= new totalPrice;
         }
+    
 
         private void radioButton5_CheckedChanged(object sender, EventArgs e)
         {
@@ -180,7 +180,6 @@ namespace CHO_THUE_XE
             radioButton4.Checked = false;
             radioButton5.Checked = false;
             radioButton6.Checked = false;
-            radioButton7.Checked = false;
 
             checkBox1.Checked = false;
             checkBox2.Checked = false;
@@ -251,6 +250,11 @@ namespace CHO_THUE_XE
             dap.Fill(ds);
             dgv1.DataSource = ds.Tables[0];
             dgv1.Refresh();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            totalPrice = carPrice + materialPrice + functionPrice;
         }
     }
 

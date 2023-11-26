@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data;
+using System.Windows.Forms;
 
 namespace CHO_THUE_XE
 {
@@ -619,7 +620,7 @@ namespace CHO_THUE_XE
         {
             List<Dictionary<string, string>> rows = new List<Dictionary<string, string>>();
             Dictionary<string, string> column;
-            string sqlQuery = "SELECT MaNCC, TenNCC, SoDT, DiaChi FROM NhaCC";
+            string sqlQuery = "SELECT ID, MaKH, Sdt, IdXe,NgayThue, NgayTra, Status,GhiChu FROM LT";
 
             SqlCommand command = new SqlCommand(sqlQuery, this.conn);
 
@@ -631,10 +632,14 @@ namespace CHO_THUE_XE
                 {    //Every new row will create a new dictionary that holds the columns
                     column = new Dictionary<string, string>();
 
-                    column["MaNCC"] = reader["MaNCC"].ToString();
-                    column["TenNCC"] = reader["TenNCC"].ToString();
-                    column["SoDT"] = reader["SoDT"].ToString();
-                    column["DiaChi"] = reader["DiaChi"].ToString();
+                    column["ID"] = reader["ID"].ToString();
+                    column["MaKH"] = reader["MaKH"].ToString();
+                    column["Sdt"] = reader["Sdt"].ToString();
+                    column["IdXe"] = reader["IdXe"].ToString();
+                    column["NgayThue"] = reader["NgayThue"].ToString();
+                    column["NgayTra"] = reader["NgayTra"].ToString();
+                    column["Status"] = reader["Status"].ToString();
+                    column["GhiChu"] = reader["GhiChu"].ToString();
                     rows.Add(column); //Place the dictionary into the list
                 }
                 reader.Close();
@@ -649,16 +654,21 @@ namespace CHO_THUE_XE
 
         }
 
-        public bool AddNewRowSu(string name, string phone, string adr)
+        public bool AddNewRowSu(string sup, string phone, string adr, string box4, DateTime dateTimePicker1, DateTime dateTimePicker3, string box1, string box5)
         {
-            string addCmd = "INSERT INTO NhaCC (TenNCC, SoDT, DiaChi) values (@val1, @val2, @val3)";
+            string addCmd = "INSERT INTO LT (ID, MaKH, Sdt, IdXe,NgayThue, NgayTra, Status,GhiChu FROM DatXe) values (@val1, @val2, @val3, @val4, @val5, @val6, @val7, @val8)";
             using (SqlCommand comm = new SqlCommand())
             {
                 comm.Connection = conn;
                 comm.CommandText = addCmd;
-                comm.Parameters.AddWithValue("@val1", name);
+                comm.Parameters.AddWithValue("@val1", sup);
                 comm.Parameters.AddWithValue("@val2", phone);
                 comm.Parameters.AddWithValue("@val3", adr);
+                comm.Parameters.AddWithValue("@val4", box4);
+                comm.Parameters.AddWithValue("@val1", dateTimePicker1);
+                comm.Parameters.AddWithValue("@val2", dateTimePicker3);
+                comm.Parameters.AddWithValue("@val3", box1);
+                comm.Parameters.AddWithValue("@val4", box5);
                 try
                 {
                     comm.ExecuteNonQuery();
@@ -674,7 +684,7 @@ namespace CHO_THUE_XE
 
         public bool RemoveRowSu(string id)
         {
-            string addCmd = "DELETE FROM NhaCC where MaNCC = @val1";
+            string addCmd = "DELETE FROM LT where ID = @val1";
             using (SqlCommand comm = new SqlCommand())
             {
                 comm.Connection = conn;
@@ -694,17 +704,23 @@ namespace CHO_THUE_XE
             }
         }
 
-        public bool UpdateRowSu(string sid, string name, string phone, string adr)
+        public bool UpdateRowSu(string sup, string phone, string adr , string box4, string text, DateTime dateTimePicker1, DateTime dateTimePicker3, string box1, string box5)
         {
-            string addCmd = "update NhaCC set TenNCC = @val2, SoDT =  @val3, DiaChi = @val4 where MaNCC = @val1";
+            string addCmd = "update LT set MaKH=@val2, Sdt=@val3, IdXe=@val4,NgayThue=@val5, NgayTra=@val6, Status=@val7,GhiChu=@val8 where ID = @val1";
             using (SqlCommand comm = new SqlCommand())
             {
                 comm.Connection = conn;
                 comm.CommandText = addCmd;
-                comm.Parameters.AddWithValue("@val1", sid);
-                comm.Parameters.AddWithValue("@val2", name);
-                comm.Parameters.AddWithValue("@val3", phone);
-                comm.Parameters.AddWithValue("@val4", adr);
+                comm.Parameters.AddWithValue("@val1", sup);
+                comm.Parameters.AddWithValue("@val2", phone);
+                comm.Parameters.AddWithValue("@val3", adr);
+                comm.Parameters.AddWithValue("@val4", box4);
+                comm.Parameters.AddWithValue("@val1", dateTimePicker1);
+                comm.Parameters.AddWithValue("@val2", dateTimePicker3);
+                comm.Parameters.AddWithValue("@val3", box1);
+                comm.Parameters.AddWithValue("@val4", box5);
+
+
 
                 try
                 {
