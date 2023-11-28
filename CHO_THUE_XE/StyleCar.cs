@@ -1,5 +1,6 @@
 ﻿using DocumentFormat.OpenXml.Drawing;
 using DocumentFormat.OpenXml.Spreadsheet;
+using DocumentFormat.OpenXml.Vml;
 using OfficeOpenXml;
 using System;
 using System.Collections.Generic;
@@ -17,8 +18,8 @@ namespace CHO_THUE_XE
 {
     public partial class StyleCar : Form
     {
-        int Role = 0;
         int fuelId = 1;
+       string indexFunction ="";
         DataModel dm;
 
         public StyleCar()
@@ -48,9 +49,27 @@ namespace CHO_THUE_XE
             List<Dictionary<string, string>> rows = dm.FetchAllRowCarRent();
             foreach (Dictionary<string, string> row in rows)
             {
-                string chucnang = "Bản đồ";
+                string chucnang = "";
+                HashSet<int> numbersSet = new HashSet<int>(Array.ConvertAll(row["ChucNang"].ToString().Split(','), int.Parse));
+                foreach (GroupBox ctrl in this.Controls.OfType<GroupBox>()) //We get all of groupboxes that is in our form (We want the checkboxes which are only in a groupbox.Not all of the checkboxes in the form.)
+                {
+                    foreach (CheckBox c in ctrl.Controls.OfType<CheckBox>()) //We get all of checkboxes which are in a groupbox.One by one.
+                    {
+                        int i = ctrl.Controls.IndexOf(c);
+                        if (numbersSet.Contains(i))
+                        {
+                            chucnang += c.Text;
+                            numbersSet.Remove(i);
+                            if(numbersSet.Count!=0)
+                            {
+                                chucnang += ", ";
+                            }
+                        }
+                    }
+                }
+
                 String nhienLieu = "Điện";
-                if(int.Parse( row["NhienLieu"]) == 1)
+                if(int.Parse(row["NhienLieu"]) == 1)
                 {
                     nhienLieu = "Xăng";
                 }
@@ -92,7 +111,7 @@ namespace CHO_THUE_XE
         {
             //Add
             if (!dm.AddNewCarRent(Int32.Parse(txtId.Text), Int32.Parse(txtIdKH.Text),Int32.Parse(txtIdCar.Text), Int32.Parse(txtTotal.Text),
-               Role, fuelId))
+               indexFunction, fuelId))
             {
                 MessageBox.Show("Failed");
             }
@@ -121,29 +140,36 @@ namespace CHO_THUE_XE
         {
             int priceCar = dm.getPriceCar(int.Parse(txtIdCar.Text));
             int priceFueld = 100;
-            int priceRole = 200;
+            int priceFunction = 0;
             if (priceCar < 0)
             {
                 MessageBox.Show("Không có Id car");
                 return;
             }
-            if (fuelId == 1)
+
+            foreach (GroupBox ctrl in this.Controls.OfType<GroupBox>()) //We get all of groupboxes that is in our form (We want the checkboxes which are only in a groupbox.Not all of the checkboxes in the form.)
+            {
+                foreach (CheckBox c in ctrl.Controls.OfType<CheckBox>()) //We get all of checkboxes which are in a groupbox.One by one.
+                {
+                    if (c.Checked == true)
+                    {
+                        priceFunction += 100;
+                        if (indexFunction.Length > 0)
+                        {
+                            indexFunction += ",";
+                        }
+                        indexFunction += ctrl.Controls.IndexOf(c);
+                   
+                    }
+                }
+            }
+
+            if (fuelId == 2)
             {
                 priceFueld = 200;
             }
-            if (Role == 8)
-            {
-                priceRole = 20000;
-            }
-            if(Role <= 3)
-            {
-                priceRole= 500;
-            }
-            if (Role <= 7)
-            {
-                priceRole = 1200;
-            }
-            txtTotal.Text = (priceCar+ priceFueld+ priceRole )+ "";
+    
+            txtTotal.Text = (priceCar+ priceFueld+ priceFunction) + "";
         }
 
         private void radioDien_CheckedChanged(object sender, EventArgs e)
@@ -162,42 +188,34 @@ namespace CHO_THUE_XE
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-            Role = 1;
         }
 
         private void checkBox8_CheckedChanged(object sender, EventArgs e)
         {
-            Role = 2;
         }
 
         private void checkBox2_CheckedChanged(object sender, EventArgs e)
         {
-            Role =3;
         }
 
         private void checkBox4_CheckedChanged(object sender, EventArgs e)
         {
-            Role = 4;
         }
 
         private void checkBox3_CheckedChanged(object sender, EventArgs e)
         {
-            Role = 5;
         }
 
         private void checkBox6_CheckedChanged(object sender, EventArgs e)
         {
-            Role = 6;
         }
 
         private void checkBox5_CheckedChanged(object sender, EventArgs e)
         {
-            Role = 7;
         }
 
         private void checkBox7_CheckedChanged(object sender, EventArgs e)
         {
-            Role = 8;
         }
 
         private void groupBox_Enter(object sender, EventArgs e)

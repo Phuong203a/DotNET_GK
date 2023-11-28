@@ -487,7 +487,6 @@
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.pictureBox16);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "StyleCar";
             this.Load += new System.EventHandler(this.StyleCar_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox16)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv1)).EndInit();
