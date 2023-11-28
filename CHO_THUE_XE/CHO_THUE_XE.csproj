@@ -361,5 +361,8 @@
   <ItemGroup>
     <None Include="Resources\2iuzyh711jo9bmgo.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1193659-anime-black-hair-simple-background-long-hair-looking-at-the-side1.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

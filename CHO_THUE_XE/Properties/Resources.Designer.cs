@@ -39,7 +39,7 @@ namespace CHO_THUE_XE.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DoDienTu.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("CHO_THUE_XE.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -57,6 +57,16 @@ namespace CHO_THUE_XE.Properties {
             }
             set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _1193659_anime_black_hair_simple_background_long_hair_looking_at_the_side {
+            get {
+                object obj = ResourceManager.GetObject("1193659-anime-black-hair-simple-background-long-hair-looking-at-the-side", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         

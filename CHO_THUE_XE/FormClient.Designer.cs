@@ -346,7 +346,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Cooper Std Black", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.Red;
-            this.label6.Location = new System.Drawing.Point(385, 36);
+            this.label6.Location = new System.Drawing.Point(326, 33);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(457, 45);
             this.label6.TabIndex = 52;

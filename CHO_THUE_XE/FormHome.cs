@@ -147,5 +147,15 @@ namespace CHO_THUE_XE
             StyleCar ft = new StyleCar();
             ft.ShowDialog();
         }
+
+        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
+        {
+
+        }
+
+        private void chart_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
