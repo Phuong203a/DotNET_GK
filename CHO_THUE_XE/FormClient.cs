@@ -267,6 +267,13 @@ namespace CHO_THUE_XE
         {
 
         }
+
+        private void pictureBox2_Click_1(object sender, EventArgs e)
+        {
+            this.Hide();
+            FormHome fh = new FormHome();
+            fh.ShowDialog();
+        }
     }
 }
 

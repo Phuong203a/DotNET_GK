@@ -50,14 +50,7 @@ namespace CHO_THUE_XE
                             fh.ShowDialog();                    
                             break;
                         }
-                        else
-                        {
-                            this.Hide();
-                            FormPurchase fp = new FormPurchase();
-                            fp.ShowDialog();
-                           
-                            break;
-                        }
+                     
                     }
                     else MessageBox.Show("Tài khoản hoặc mật khẩu không chính xác");
                     return;

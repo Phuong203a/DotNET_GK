@@ -209,7 +209,6 @@ D:\HK5\.Net\Giữa kì\GK_DOT_NET_THUXE\CHO_THUE_XE\obj\Debug\CHO_THUE_XE.FormCl
 D:\HK5\.Net\Giữa kì\GK_DOT_NET_THUXE\CHO_THUE_XE\obj\Debug\CHO_THUE_XE.FormCarInformation.resources
 D:\HK5\.Net\Giữa kì\GK_DOT_NET_THUXE\CHO_THUE_XE\obj\Debug\CHO_THUE_XE.FormHome.resources
 D:\HK5\.Net\Giữa kì\GK_DOT_NET_THUXE\CHO_THUE_XE\obj\Debug\CHO_THUE_XE.FormLogin.resources
-D:\HK5\.Net\Giữa kì\GK_DOT_NET_THUXE\CHO_THUE_XE\obj\Debug\CHO_THUE_XE.FormPurchase.resources
 D:\HK5\.Net\Giữa kì\GK_DOT_NET_THUXE\CHO_THUE_XE\obj\Debug\CHO_THUE_XE.FormStaff.resources
 D:\HK5\.Net\Giữa kì\GK_DOT_NET_THUXE\CHO_THUE_XE\obj\Debug\CHO_THUE_XE.FormCarRent.resources
 D:\HK5\.Net\Giữa kì\GK_DOT_NET_THUXE\CHO_THUE_XE\obj\Debug\CHO_THUE_XE.ListItem.resources

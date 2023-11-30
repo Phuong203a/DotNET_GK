@@ -54,14 +54,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="CHO_THUE_XE.exe" size="4165568">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="CHO_THUE_XE.exe" size="4149696">
       <assemblyIdentity name="CHO_THUE_XE" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>aLQPO8p9uE2AZ9zqFBMo4ZvtGPHGXqLuLNLzmhjSiro=</dsig:DigestValue>
+        <dsig:DigestValue>/oxeOgk5MHkRet7Ow+Q/tJN1pZUzdyF3Ipz8A2SvPL8=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

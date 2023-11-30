@@ -121,9 +121,7 @@ namespace CHO_THUE_XE
         private void button4_Click(object sender, EventArgs e)
         {
         
-                this.Hide();
-                FormPurchase ft = new FormPurchase();
-                ft.ShowDialog();
+                
             
         }
 
