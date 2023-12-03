@@ -50,23 +50,27 @@ namespace CHO_THUE_XE
             foreach (Dictionary<string, string> row in rows)
             {
                 string chucnang = "";
-                HashSet<int> numbersSet = new HashSet<int>(Array.ConvertAll(row["ChucNang"].ToString().Split(','), int.Parse));
-                foreach (GroupBox ctrl in this.Controls.OfType<GroupBox>()) //We get all of groupboxes that is in our form (We want the checkboxes which are only in a groupbox.Not all of the checkboxes in the form.)
+                if (row["ChucNang"].ToString() != null && !row["ChucNang"].ToString().Equals(""))
                 {
-                    foreach (CheckBox c in ctrl.Controls.OfType<CheckBox>()) //We get all of checkboxes which are in a groupbox.One by one.
+                    HashSet<int> numbersSet = new HashSet<int>(Array.ConvertAll(row["ChucNang"].ToString().Split(','), int.Parse));
+                    foreach (GroupBox ctrl in this.Controls.OfType<GroupBox>()) //We get all of groupboxes that is in our form (We want the checkboxes which are only in a groupbox.Not all of the checkboxes in the form.)
                     {
-                        int i = ctrl.Controls.IndexOf(c);
-                        if (numbersSet.Contains(i))
+                        foreach (CheckBox c in ctrl.Controls.OfType<CheckBox>()) //We get all of checkboxes which are in a groupbox.One by one.
                         {
-                            chucnang += c.Text;
-                            numbersSet.Remove(i);
-                            if(numbersSet.Count!=0)
+                            int i = ctrl.Controls.IndexOf(c);
+                            if (numbersSet.Contains(i))
                             {
-                                chucnang += ", ";
+                                chucnang += c.Text;
+                                numbersSet.Remove(i);
+                                if (numbersSet.Count != 0)
+                                {
+                                    chucnang += ", ";
+                                }
                             }
                         }
                     }
                 }
+          
 
                 String nhienLieu = "Điện";
                 if(int.Parse(row["NhienLieu"]) == 1)

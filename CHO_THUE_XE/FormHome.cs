@@ -14,10 +14,16 @@ namespace CHO_THUE_XE
     public partial class FormHome : Form
     {
         DataModel dm;
+        bool isSoLuong = false;
+        int count = 0;
+
         public FormHome()
         {
             InitializeComponent();
             LoadDataModel();
+            lblTotalCar.Visible = false;
+            chart.Visible = false;
+            btnThongKe.Visible= false;
         }
 
         private void LoadDataModel()
@@ -61,20 +67,70 @@ namespace CHO_THUE_XE
 
         private void FormHome_Load(object sender, EventArgs e)
         {
-            chart.Visible = false;
-            chart.Series.Add("TongDoanhThu");
-            chart.Series.Add("ChiPhi");
-            chart.Titles.Add("Thống kê của cửa hàng");
-            List<Dictionary<string, string>> rows = dm.FetchRowSt();
-            int a = 0;
-            int b = 0;
-            foreach (Dictionary<string, string> row in rows)
+            loadThongKe();
+        }
+        private void loadThongKe()
+        {
+           
+            while (chart.Series.Count > 0) 
             {
-                a = Convert.ToInt32(Convert.ToDecimal(row["TongDoanhThu"]));
-                b = Convert.ToInt32(Convert.ToDecimal(row["ChiPhi"]));
+                foreach (var series in chart.Series)
+                {
+                    series.Points.Clear();
+                }
+
+                chart.Series.RemoveAt(0);
+            
             }
-            chart.Series["TongDoanhThu"].Points.AddXY("TongDoanhThu", a);
-            chart.Series["ChiPhi"].Points.AddXY("ChiPhi", b);
+            while (chart.Titles.Count > 0) { chart.Titles.RemoveAt(0); }
+            if (isSoLuong)
+            {
+             
+
+                chart.Titles.Add("Số lượng xe theo mẫu");
+                List<Dictionary<string, string>> rows = dm.FetchRowSt();
+                int countCar = 0;
+                foreach (Dictionary<string, string> row in rows)
+                {
+                    chart.Series.Add(row["type"]);
+                    chart.Series[row["type"]].Points.AddXY("So luong", Int32.Parse(row["count"]));
+                    countCar += Int32.Parse(row["count"]);
+
+                }
+                lblTotalCar.Text = "Tổng số lượng xe trong kho: " + countCar;
+            }
+            else
+            {
+
+                chart.Titles.Add("Doanh thu");
+                List<Dictionary<string, string>> rows = dm.FetchDoanhThu();
+                int sum = 0;
+                foreach (Dictionary<string, string> row in rows)
+                {
+                    chart.Series.Add(row["type"]);
+                    chart.Series[row["type"]].Points.AddXY("So luong", Int32.Parse(row["sum"]));
+                    sum += Int32.Parse(row["sum"]);
+
+                }
+                lblTotalCar.Text = "Tổng số doanh thu: " + sum;
+            }
+        }
+
+        private void enableChart()
+        {
+            count++;
+            if (count % 2 == 0)
+            {
+                btnLoad.Text = "See statistic";
+                chart.Visible = false;
+                lblTotalCar.Visible = false;
+            }
+            else
+            {
+                btnLoad.Text = "Exit statistic";
+                chart.Visible = true;
+                lblTotalCar.Visible = true;
+            }
         }
 
         private void pictureBox2_Click(object sender, EventArgs e)
@@ -101,21 +157,12 @@ namespace CHO_THUE_XE
         {
 
         }
-        int count = 0;
 
         private void btnLoad_Click(object sender, EventArgs e)
         {
-            count++;
-            if(count % 2 ==  0)
-            {
-                btnLoad.Text = "See statistic";
-                chart.Visible = false;
-            }
-            else
-            {
-                btnLoad.Text = "Exit statistic";
-                chart.Visible = true;
-            }      
+            btnThongKe.Text = (isSoLuong ? "Xem doanh thu" : "Xem so luong");
+            btnThongKe.Visible = true;
+            enableChart();
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -154,6 +201,13 @@ namespace CHO_THUE_XE
         private void chart_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnThongKe_Click(object sender, EventArgs e)
+        {
+            isSoLuong = !isSoLuong;
+            btnThongKe.Text = (isSoLuong ? "Xem doanh thu" : "Xem so luong");
+            loadThongKe();
         }
     }
 }

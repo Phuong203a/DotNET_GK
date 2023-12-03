@@ -800,7 +800,7 @@ namespace CHO_THUE_XE
         {
             List<Dictionary<string, string>> rows = new List<Dictionary<string, string>>();
             Dictionary<string, string> column;
-            string sqlQuery = "SELECT top(1) TongDoanhThu,ChiPhi FROM BaoCaoThongKe ORDER BY ThoiGianLap desc;";
+            string sqlQuery = "select count(*) as count , type  from Car group by Type;";
 
             SqlCommand command = new SqlCommand(sqlQuery, this.conn);
 
@@ -812,8 +812,40 @@ namespace CHO_THUE_XE
                 {    //Every new row will create a new dictionary that holds the columns
                     column = new Dictionary<string, string>();
 
-                    column["TongDoanhThu"] = reader["TongDoanhThu"].ToString();
-                    column["ChiPhi"] = reader["ChiPhi"].ToString();
+                    column["count"] = reader["count"].ToString();
+                    column["type"] = reader["type"].ToString();
+                    rows.Add(column); //Place the dictionary into the list
+                }
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                //If an exception occurs, write it to the console
+                Console.WriteLine(ex.ToString());
+            }
+
+            return rows;
+
+        }
+
+        public List<Dictionary<string, string>> FetchDoanhThu()
+        {
+            List<Dictionary<string, string>> rows = new List<Dictionary<string, string>>();
+            Dictionary<string, string> column;
+            string sqlQuery = "select sum(cr.Total) as sum, c.Type from CarRent cr, Car c  where cr.CarId = c.Id group by c.Type;";
+
+            SqlCommand command = new SqlCommand(sqlQuery, this.conn);
+
+            try
+            {
+                SqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {    //Every new row will create a new dictionary that holds the columns
+                    column = new Dictionary<string, string>();
+
+                    column["sum"] = reader["sum"].ToString();
+                    column["type"] = reader["type"].ToString();
                     rows.Add(column); //Place the dictionary into the list
                 }
                 reader.Close();
